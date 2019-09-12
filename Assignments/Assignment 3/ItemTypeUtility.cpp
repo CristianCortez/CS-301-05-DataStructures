@@ -9,6 +9,7 @@ void runMenu() {
 	string outFile;
 	string test;
 	
+	//get user info:
 	cout << "Enter name of input command file; press return." << endl;
 	cin >> inFile;
 
@@ -17,4 +18,8 @@ void runMenu() {
 
 	cout << "Enter name of test run; press return;" << endl;
 	cin >> test;
+	
+	//open files using user info:
+	fileIn.open(inFile, ios::out | ios::int);
+	fileOut.open(outFile, ios::out | ios::int);
 }

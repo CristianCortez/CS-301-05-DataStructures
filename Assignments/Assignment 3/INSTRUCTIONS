@@ -37,7 +37,8 @@ Quit
 
 Any other commands should result in printing “<command> is not a valid command”.
 
-Each line of the input file will be a command to execute on your unsortedList instance. Use the attached input file, listData for your project.
+Each line of the input file will be a command to execute on your unsortedList instance.
+Use the attached input file, listData for your project.
 
 
 
@@ -57,7 +58,8 @@ Output file
 
 Project plan
 
-The project plan should include test cases, expectations, class names, and functions you plan to implement. Include the description of the logic you are trying to implement.
+The project plan should include test cases, expectations, class names, and functions you plan to implement.
+Include the description of the logic you are trying to implement.
 
 
 Screen shot

@@ -1,0 +1,66 @@
+Assignment #3
+
+Unsorted list
+
+Implement an unsorted list from the text and lecture. Create a driver to do the following:
+
+-prompt user for the name of the input file to use
+
+-prompt user for the name of the output file to use
+
+-prompt user for the name of the test run
+
+-open the input file, reading line by line, and execute the instructions
+
+-display the result to the console and write the result to the output file
+
+
+The input file can include the following commands:
+
+GetLength
+
+PutItem
+
+PrintList
+
+GetItem
+
+IsFull
+
+DeleteItem
+
+PrintList
+
+MakeEmpty
+
+Quit
+
+Any other commands should result in printing “<command> is not a valid command”.
+
+Each line of the input file will be a command to execute on your unsortedList instance. Use the attached input file, listData for your project.
+
+
+
+
+Deliverables:
+
+Project plan
+
+Screenshot
+
+Driver
+
+All .h and .cpp files supporting your unsortedList implementation.
+
+Output file
+
+
+Project plan
+
+The project plan should include test cases, expectations, class names, and functions you plan to implement. Include the description of the logic you are trying to implement.
+
+
+Screen shot
+
+This should be a screenshot of your program output.
+

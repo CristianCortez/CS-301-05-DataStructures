@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include "ItemType.h"
+#include <iostream>
+using namespace std;
 
 ItemType::ItemType()
 { 

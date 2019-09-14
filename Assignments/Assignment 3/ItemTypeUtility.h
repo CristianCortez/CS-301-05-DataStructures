@@ -4,6 +4,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+
+using std::string;
+
 struct node {
 	int num;
 	node* next;

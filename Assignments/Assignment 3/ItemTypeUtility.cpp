@@ -187,7 +187,8 @@ void runMenu() {
 		}
 		else {
 			commandFlag = 1;
-			cout << "\" " << fileContents << "\" is not a valid command." << endl;
+			commandCount--;
+			cout << "\"" << fileContents << "\" is not a valid command." << endl;
 		}
 
 		if (commandFlag == 0)

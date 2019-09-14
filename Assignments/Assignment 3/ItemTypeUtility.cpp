@@ -82,13 +82,15 @@ bool List::deleteItem(int n) {
 
 string List::extractInt(string str, int* num) {
 
-	for (int i = 0; i < str.size(); i++) {
-		// if the char is a num:
+	*num = 0;
+	int tens = 1;
+	for (int i = str.size() - 1; i >= 0; i--) {
+
 		if (str[i] <= '9' && str[i] >= '0') {
-			*num = str[i] - 48;
+			*num = ((str[i] - 48)* tens) + *num;
 			str.erase(i);
-			//PutItem(*num);
 		}
+		tens *= 10;
 	}
 	return str;
 }

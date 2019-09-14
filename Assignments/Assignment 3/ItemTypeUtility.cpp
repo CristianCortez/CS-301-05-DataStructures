@@ -2,6 +2,8 @@
 #include "ItemTypeUtility.h"
 #include <iostream>
 
+using namespace std
+
 List::~List() {
 	while (headPtr) {
 		node *tmp = headPtr;

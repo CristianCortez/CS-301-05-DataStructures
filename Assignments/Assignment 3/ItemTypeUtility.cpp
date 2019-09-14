@@ -3,14 +3,14 @@
 
 List::~List() {
 	while (headPtr) {
-		node *tmp = headPtr;
+		node* tmp = headPtr;
 		headPtr = headPtr->next;
 		delete tmp;
 		//cout << "Node Destoyed by destructor..." << endl;
 	}
 }
 int List::getLength() {
-	node *currentNodeAddr = headPtr;
+	node* currentNodeAddr = headPtr;
 	int size = 0;
 	if (currentNodeAddr) {
 		do {
@@ -21,7 +21,7 @@ int List::getLength() {
 	return size;
 }
 void List::PutItem(int n) {
-	node *tmp = new node;
+	node* tmp = new node;
 	tmp->num = n;
 	tmp->next = headPtr;
 	headPtr = tmp;
@@ -29,7 +29,7 @@ void List::PutItem(int n) {
 }
 string List::printList() {
 	ostringstream prtList;
-	
+
 	node* listAddr = headPtr;
 	if (listAddr) {
 		while (listAddr) {
@@ -64,7 +64,7 @@ bool List::isFull() {
 	return false;
 }
 bool List::deleteItem(int n) {
-	node* listAddr = headPtr, *previousNode = NULL;
+	node* listAddr = headPtr, * previousNode = NULL;
 	if (listAddr && listAddr->num == n) {
 		headPtr = listAddr->next;
 		delete listAddr;
@@ -81,7 +81,7 @@ bool List::deleteItem(int n) {
 }
 
 string List::extractInt(string str, int* num) {
-	
+
 	for (int i = 0; i < str.size(); i++) {
 		// if the char is a num:
 		if (str[i] <= '9' && str[i] >= '0') {
@@ -111,7 +111,7 @@ void runMenu() {
 	List* head = NULL;
 	head = new List();
 
-	
+
 	cout << "Enter name of input command file; press return." << endl;
 	cin >> inFile;
 
@@ -121,7 +121,7 @@ void runMenu() {
 	cout << "Enter name of test run; press return;" << endl;
 	cin >> test;
 
-	fileIn.open(inFile.c_str()); 
+	fileIn.open(inFile.c_str());
 	fileOut.open(outFile.c_str());
 	// we want to follow the commands found within the input file
 	// the commands will then tell us what to do 
@@ -139,7 +139,7 @@ void runMenu() {
 
 		/* We need to extract the integer from string
 		 and we need to remove the integer from string*/
-		
+
 		fileContents = head->extractInt(fileContents, extractedNum);
 		if (fileContents == "GetLength") {
 			int length = 0;
@@ -169,7 +169,7 @@ void runMenu() {
 			else
 				fileOut << "List is not full." << endl;
 		}
-		else if (fileContents == "DeleteItem") {
+		else if (fileContents == "DeleteItem ") {
 			bool deletedItem = head->deleteItem(*extractedNum);
 			if (deletedItem)
 				fileOut << extractedNum << " is deleted" << endl;
@@ -190,8 +190,8 @@ void runMenu() {
 
 		if (commandFlag == 0)
 			cout << " Command number " << commandCount << " completed." << endl;
-		
-		
+
+
 	}
 	if (head) {
 		delete head;

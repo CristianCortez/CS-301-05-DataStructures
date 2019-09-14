@@ -2,7 +2,7 @@
 #include "ItemTypeUtility.h"
 #include <iostream>
 
-using namespace std
+using namespace std;
 
 List::~List() {
 	while (headPtr) {

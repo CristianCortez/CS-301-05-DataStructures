@@ -6,7 +6,7 @@ List::~List() {
 		node *tmp = headPtr;
 		headPtr = headPtr->next;
 		delete tmp;
-		cout << "Node Destoyed by destructor..." << endl;
+		//cout << "Node Destoyed by destructor..." << endl;
 	}
 }
 int List::getLength() {
@@ -25,7 +25,7 @@ void List::PutItem(int n) {
 	tmp->num = n;
 	tmp->next = headPtr;
 	headPtr = tmp;
-	cout << n << " is in list" << endl;
+	//cout << n << " is in list" << endl;
 }
 string List::printList() {
 	ostringstream prtList;
@@ -33,8 +33,9 @@ string List::printList() {
 	node* listAddr = headPtr;
 	if (listAddr) {
 		while (listAddr) {
-			cout << listAddr->num << endl;
+			//cout << listAddr->num << endl;
 			prtList << listAddr->num;
+			listAddr = listAddr->next;
 
 		}
 	}

@@ -1,5 +1,6 @@
 #include "ItemType.h"
 #include "ItemTypeUtility.h"
+#include <iostream>
 
 List::~List() {
 	while (headPtr) {

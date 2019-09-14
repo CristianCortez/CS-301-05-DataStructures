@@ -62,7 +62,7 @@ bool List::isFull() {
 	return false;
 }
 bool List::deleteItem(int n) {
-	node* listAddr = headPtr, *previousNode;
+	node* listAddr = headPtr, *previousNode = NULL;
 	if (listAddr && listAddr->num == n) {
 		headPtr = listAddr->next;
 		delete listAddr;

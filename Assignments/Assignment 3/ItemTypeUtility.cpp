@@ -1,8 +1,6 @@
 #include "ItemType.h"
 #include "ItemTypeUtility.h"
 
-using namespace std;
-
 List::~List() {
 	while (headPtr) {
 		node *tmp = headPtr;
@@ -85,7 +83,7 @@ string List::extractInt(string str, int* num) {
 		if (str[i] <= '9' && str[i] >= '0') {
 			*num = str[i] - 48;
 			str.erase(i);
-			PutItem(*num);
+			//PutItem(*num);
 		}
 	}
 	return str;
@@ -94,16 +92,22 @@ string List::extractInt(string str, int* num) {
 void runMenu() {
 	ifstream fileIn; // file to read from
 	ofstream fileOut; // file to write to
+
 	string inFile;
 	string outFile;
 	string test;
 	string fileContents;
+
 	int commandCount = 0, commandFlag;
 	int* extractedNum;
 	extractedNum = new int;
+
+	bool quit = false;
+
 	List* head = NULL;
 	head = new List();
-	bool quit = false;
+
+	
 	cout << "Enter name of input command file; press return." << endl;
 	cin >> inFile;
 
@@ -119,6 +123,7 @@ void runMenu() {
 	// the commands will then tell us what to do 
 	// each todo from the commands should be written to the output file
 	// the console should just display wether we the command is valid or not
+	fileOut << test << endl;
 	while (getline(fileIn, fileContents) || quit != true) {
 		if (!head)
 			head = new List();
@@ -132,7 +137,7 @@ void runMenu() {
 		 and we need to remove the integer from string*/
 		
 		fileContents = head->extractInt(fileContents, extractedNum);
-		if (fileContents == "GetLength ") {
+		if (fileContents == "GetLength") {
 			int length = 0;
 			length = head->getLength();
 			fileOut << "Length is " << length << endl;
@@ -143,7 +148,7 @@ void runMenu() {
 			fileOut << *extractedNum << " is in List" << endl;
 
 		}
-		else if (fileContents == "PrintList ") {
+		else if (fileContents == "PrintList") {
 			fileOut << head->printList();
 		}
 		else if (fileContents == "GetItem ") {
@@ -153,25 +158,25 @@ void runMenu() {
 			else
 				fileOut << *extractedNum << " not in list." << endl;
 		}
-		else if (fileContents == "IsFull ") {
+		else if (fileContents == "IsFull") {
 			bool full = head->isFull();
 			if (full)
 				fileOut << "List is full." << endl;
 			else
 				fileOut << "List is not full." << endl;
 		}
-		else if (fileContents == "DeleteItem ") {
+		else if (fileContents == "DeleteItem") {
 			bool deletedItem = head->deleteItem(*extractedNum);
 			if (deletedItem)
 				fileOut << extractedNum << " is deleted" << endl;
 			else
 				fileOut << extractedNum << " was not found and cannot delete." << endl;
 		}
-		else if (fileContents == "MakeEmpty ") {
+		else if (fileContents == "MakeEmpty") {
 			delete head;
 			head = NULL;
 		}
-		else if (fileContents == "Quit ") {
+		else if (fileContents == "Quit") {
 			quit = true;
 		}
 		else {

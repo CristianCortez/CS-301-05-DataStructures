@@ -31,10 +31,12 @@ string List::printList() {
 	ostringstream prtList;
 	
 	node* listAddr = headPtr;
-	while (listAddr) {
-		cout << listAddr->num << endl;
-		prtList << listAddr->num;
+	if (listAddr) {
+		while (listAddr) {
+			cout << listAddr->num << endl;
+			prtList << listAddr->num;
 
+		}
 	}
 	return prtList.str();
 }
@@ -185,7 +187,7 @@ void runMenu() {
 			cout << "\" " << fileContents << "\" is not a valid command." << endl;
 		}
 
-		if (commandFlag = 0)
+		if (commandFlag == 0)
 			cout << " Command number " << commandCount << " completed." << endl;
 		
 		

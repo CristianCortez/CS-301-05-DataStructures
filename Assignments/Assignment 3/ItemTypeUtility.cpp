@@ -1,8 +1,5 @@
 #include "ItemType.h"
 #include "ItemTypeUtility.h"
-#include <iostream>
-
-using namespace std;
 
 List::~List() {
 	while (headPtr) {
@@ -15,11 +12,12 @@ List::~List() {
 int List::getLength() {
 	node *currentNodeAddr = headPtr;
 	int size = 0;
-	do {
-		size++;
-		currentNodeAddr = currentNodeAddr->next;
-	} while (currentNodeAddr);
-
+	if (currentNodeAddr) {
+		do {
+			size++;
+			currentNodeAddr = currentNodeAddr->next;
+		} while (currentNodeAddr);
+	}
 	return size;
 }
 void List::PutItem(int n) {

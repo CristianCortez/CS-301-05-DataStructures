@@ -8,7 +8,8 @@
 
 
 #include "ItemType.h"
-
+#include "ItemTypeUtility.h"
 int main() {
+	runMenu();
 	return 0;
 }

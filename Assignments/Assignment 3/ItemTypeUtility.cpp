@@ -64,7 +64,7 @@ bool List::isFull() {
 	return false;
 }
 bool List::deleteItem(int n) {
-	node* listAddr = headPtr, * previousNode = NULL;
+	node* listAddr = headPtr, *previousNode = NULL;
 	if (listAddr && listAddr->num == n) {
 		headPtr = listAddr->next;
 		delete listAddr;
@@ -153,7 +153,7 @@ void runMenu() {
 
 		}
 		else if (fileContents == "PrintList") {
-			fileOut << head->printList();
+			fileOut << head->printList() << endl;
 		}
 		else if (fileContents == "GetItem ") {
 			bool found = head->getItem(*extractedNum);
@@ -172,9 +172,9 @@ void runMenu() {
 		else if (fileContents == "DeleteItem ") {
 			bool deletedItem = head->deleteItem(*extractedNum);
 			if (deletedItem)
-				fileOut << extractedNum << " is deleted" << endl;
+				fileOut << *extractedNum << " is deleted" << endl;
 			else
-				fileOut << extractedNum << " was not found and cannot delete." << endl;
+				fileOut << *extractedNum << " was not found and cannot delete." << endl;
 		}
 		else if (fileContents == "MakeEmpty") {
 			delete head;

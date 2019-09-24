@@ -1,0 +1,46 @@
+Dynamic Stack Template
+
+
+First, implement a Dynamic Stack Template with pop, push, and isEmpty.
+
+This should be a template class that can accept any type.
+
+ 
+
+Next, write a program to reverse files using your dynamic stack.
+
+Write a program that opens a text file and reads its contents into a stack of characters.
+
+The program should then pop the characters from the stack and save them in a second
+
+text file. The order of the characters saved in the second file should be the reverse of
+
+their order in the first file.
+
+ 
+
+Deliverables:
+
+Project plan
+
+Screenshot
+
+Driver
+
+All .h and .cpp files supporting your Dynamic Stack implementation.
+
+Output file
+
+ 
+
+Project plan
+
+The project plan should include test cases, expectations, class names, and functions you plan to implement. Include the a description of the logic you are trying to implement.
+
+ 
+
+Screen shot
+
+This should be a screenshot of your program output.
+
+ 

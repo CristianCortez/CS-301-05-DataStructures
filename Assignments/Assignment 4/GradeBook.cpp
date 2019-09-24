@@ -1,5 +1,3 @@
-#include "GradeBook.h"
-
 Semester::Semester() {
 	cout << "obj built.";
 }
@@ -16,6 +14,16 @@ void Semester::setNumF(int num) {
 void Semester::setWeigths(int num, int idx) {
 	weights[idx] = num;
 }
-int getNumP() {
+
+int Semester::getNumP(){
 	return numPrograms;
+}
+int Semester::getNumT() {
+	return numTest;
+}
+int Semester::getNumF() {
+	return numFinal;
+}
+int Semester::getWeights(int idx) {
+	return weights[idx];
 }

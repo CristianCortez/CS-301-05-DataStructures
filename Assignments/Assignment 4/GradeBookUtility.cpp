@@ -17,14 +17,30 @@ void runDescription() {
 
 void runBookMenu() {
 	char option;
+	bool sFlag = false;
+	int numsOf = 0;
+	Semester smt;
 	do {
 		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
 		cin >> option;
 		toupper(option);
 		switch (option) {
-		case 'S':
+		case 'S':			
+			cout << "How many programming assignments are there? (0-6)" << endl;
+			cin >> numsOf;
+			smt.setNumP(numsOf);
+
+			cout << "How many tests are there? (0-4) " << endl;
+			cin >> numsOf;
+			smt.setNumT(numsOf);
+
+			cout << "How many final exams are there? (0-1) " << endl;
+			cin >> numsOf;
+			smt.setNumF(numsOf);
+			sFlag = true;
 			break;
 		case 'A':
+
 			break;
 		case 'P':
 			break;

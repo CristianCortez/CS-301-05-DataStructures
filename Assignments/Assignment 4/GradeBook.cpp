@@ -16,4 +16,6 @@ void Semester::setNumF(int num) {
 void Semester::setWeigths(int num, int idx) {
 	weights[idx] = num;
 }
-
+int getNumP() {
+	return numPrograms;
+}

@@ -15,9 +15,16 @@ private:
 	int numFinal;
 	int weights[3];
 public:
-	Semester();
-	Semester(int, int, int);
 	
+	Semester();
+	void setNumP(int);
+	void setNumT(int);
+	void setNumF(int);
+	void setWeigths(int, int);
+	int getNumP();
+	int getNumT();
+	int getNumF();
+	int getWeights(int);
 };
 
 class Student : public Semester{

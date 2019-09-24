@@ -37,24 +37,83 @@ void runBookMenu() {
 			cout << "How many final exams are there? (0-1) " << endl;
 			cin >> numsOf;
 			smt.setNumF(numsOf);
+
+			cout << "Please enter weights for: "
+				<< "\n\t Tests: ";
+			cin >> numsOf;
+			smt.setWeigths(numsOf, 0);
+			cout << "\n\t Tests: ";
+			cin >> numsOf;
+			smt.setWeigths(numsOf, 1);
+			cout << "\n\t FInals: ";
+			cin >> numsOf;
+			smt.setWeigths(numsOf, 2);
+			
 			sFlag = true;
 			break;
 		case 'A':
-
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'P':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'T':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'F':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'C':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'G':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'O':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		case 'Q':
+			if (sFlag) {
+				//
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		default:
 			cout << "\n NOT A VALID OPTION." << endl;

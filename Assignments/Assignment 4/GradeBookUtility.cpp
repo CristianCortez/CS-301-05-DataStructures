@@ -20,16 +20,21 @@ void runBookMenu() {
 	bool sFlag = false;
 	int numsOf = 0;
 	Semester smt;
+	int total = 0;
 	do {
 		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
 		cin >> option;
 		toupper(option);
 		switch (option) {
-		case 'S':			
-			cout << "How many programming assignments are there? (0-6)" << endl;
-			cin >> numsOf;
-			smt.setNumP(numsOf);
-
+		case 'S':
+			do {
+				cout << "How many programming assignments are there? (0-6)" << endl;
+				cin >> numsOf;
+				if (numsOf < 0 || numsOf > 6)
+					cout << "\nPlease enter correct amt of assignments." << endl;
+				else
+					smt.setNumP(numsOf);
+			} while (numsOf < 0 || numsOf > 6);
 			cout << "How many tests are there? (0-4) " << endl;
 			cin >> numsOf;
 			smt.setNumT(numsOf);
@@ -37,21 +42,24 @@ void runBookMenu() {
 			cout << "How many final exams are there? (0-1) " << endl;
 			cin >> numsOf;
 			smt.setNumF(numsOf);
-
-			cout << "Please enter weights for: "
-				<< "\n\t Tests: ";
-			cin >> numsOf;
-			smt.setWeigths(numsOf, 0);
-			cout << "\n\t Tests: ";
-			cin >> numsOf;
-			smt.setWeigths(numsOf, 1);
-			cout << "\n\t FInals: ";
-			cin >> numsOf;
-			smt.setWeigths(numsOf, 2);
-			for (int i = 0; i < 3; i++) {
-				
-			}
-			
+			do {
+				cout << "Please enter weights (1-9) for: "
+					<< "\n\t Tests: ";
+				cin >> numsOf;
+				smt.setWeigths(numsOf, 0);
+				cout << "\n\t Tests: ";
+				cin >> numsOf;
+				smt.setWeigths(numsOf, 1);
+				cout << "\n\t FInals: ";
+				cin >> numsOf;
+				smt.setWeigths(numsOf, 2);
+				total = 0;
+				for (int i = 0; i < 3; i++) 
+					total += smt.getWeights(i);
+				if (total != 10) {
+					cout << "Weights not accepted.\n" << endl;
+				}
+			} while (total != 10);
 			sFlag = true;
 			break;
 		case 'A':
@@ -111,12 +119,6 @@ void runBookMenu() {
 			}
 			break;
 		case 'Q':
-			if (sFlag) {
-				//
-			}
-			else {
-				cout << "Please enter a semester first." << endl;
-			}
 			break;
 		default:
 			cout << "\n NOT A VALID OPTION." << endl;

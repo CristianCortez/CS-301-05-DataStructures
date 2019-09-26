@@ -26,6 +26,7 @@ void runBookMenu() {
 
 	int total = 0;
 	do {
+		cout << "Hello Dr. Zhong, please enjoy our program we put together." << endl;
 		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
 		cin >> option;
 		toupper(option);
@@ -222,6 +223,7 @@ void runBookMenu() {
 			}
 			break;
 		case 'Q':
+			cout << "Thank you for using this Dr. Zhong, please press enter to exit the program. " << endl;
 			break;
 		default:
 			cout << "\n NOT A VALID OPTION." << endl;

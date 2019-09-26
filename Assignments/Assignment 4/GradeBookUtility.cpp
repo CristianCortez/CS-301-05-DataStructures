@@ -24,13 +24,17 @@ void runBookMenu() {
 	int numsOf = 0;
 	int total = 0;
 	int id;
+	int grade = 0;
+	int idx = 0;
 
 	string lName;
 	string fName;
 
+	char ptf;
+
 	Semester smt;
 	GradeBook stu;
-	
+
 	do {
 		notTrue = false;
 		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
@@ -96,10 +100,10 @@ void runBookMenu() {
 			if (sFlag) {
 				cout << "\nPlease enter Student's Last Name: ";
 				cin >> lName;
-				
+
 				cout << "\nPlease enter Student's First Name: ";
 				cin >> fName;
-				
+
 				cout << "\nPlease enter student ID number: ";
 				cin >> id;
 				stu.addStudent(lName, fName, id, smt.getNumP, smt.getNumT, smt.getNumF);
@@ -110,7 +114,17 @@ void runBookMenu() {
 			break;
 		case 'P':
 			if (sFlag) {
-				//
+				cout << "Enter the programming assignment you wish to access: ";
+				cin >> idx;
+				cout << "\n" << endl;
+				if (idx >= 0 && idx < smt.getNumP()) {
+					ptf = 'p';
+					Students *temp;
+					// temp = head;
+					//while ()
+				}
+				else
+					cout << "Invalid chosen programming assignment number\n" << endl;
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -118,7 +132,14 @@ void runBookMenu() {
 			break;
 		case 'T':
 			if (sFlag) {
-				//
+				cout << "Enter the test you wish to access: ";
+				cin >> idx;
+				cout << "\n" << endl;
+				if (idx >= 0 && idx < smt.getNumT()) {
+
+				}
+				else
+					cout << "Invalid chosen test number\n" << endl;
 			}
 			else {
 				cout << "Please enter a semester first." << endl;

@@ -27,12 +27,47 @@ public:
 	int getWeights(int);
 };
 
+struct Grades {
+	int* prg;
+	int* tst;
+	int* fnl;
+};
+
+struct Students {
+	string lastName;
+	string firstName;
+	int ID;
+	int grd;
+	Grades saddness;
+	Students* next;
+};
+
+class GradeBook : public Semester {
+private:
+	//Grades* gHead;
+	Students* headPtr;
+public:
+	GradeBook();
+	~GradeBook();
+	
+	void addStudent(string, string, int, int, int, int);
+	void addGrade(string, char, int, int);
+	void alphaMe(Students*, Students*, int);
+
+	int getLength();
+	string printList();
+	bool getItem(int);
+	bool isFull();
+	bool deleteItem(int);
+
+};
 class Student : public Semester{
 private:
 	string lastName;
 	string firstName;
 	int ID;
-	//Student* next;
+	
+	Grades* headPtr;
 public:
 	Student();
 	void setLast(string);
@@ -45,12 +80,12 @@ public:
 
 };
 
-class Grades : public Student {
+/*class Grades : public Student {
 private:
 	int num;
 	int denom;
 public:
 
-};
+};*/
 
 #endif // !GRADEBOOK_H

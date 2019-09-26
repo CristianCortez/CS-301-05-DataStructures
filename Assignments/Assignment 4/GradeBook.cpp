@@ -1,7 +1,7 @@
 #include "GradeBook.h"
 
 Semester::Semester() {
-	cout << "obj built.";
+	cout << "obj built. \n";
 }
 
 void Semester::setNumP(int num) {

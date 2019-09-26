@@ -17,31 +17,60 @@ void runDescription() {
 
 void runBookMenu() {
 	char option;
+
 	bool sFlag = false;
+	bool notTrue;
+
 	int numsOf = 0;
-	Semester smt;
 	int total = 0;
+
+	string name;
+
+	Semester smt;
+	Student stu;
+	Grades grd;
+	
 	do {
+		notTrue = false;
 		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
 		cin >> option;
 		toupper(option);
 		switch (option) {
 		case 'S':
 			do {
-				cout << "How many programming assignments are there? (0-6)" << endl;
+				cout << "How many programming assignments are there? (0-6)";
 				cin >> numsOf;
-				if (numsOf < 0 || numsOf > 6)
+				if (numsOf < 0 || numsOf > 6) {
 					cout << "\nPlease enter correct amt of assignments." << endl;
-				else
+				}
+				else {
 					smt.setNumP(numsOf);
-			} while (numsOf < 0 || numsOf > 6);
-			cout << "How many tests are there? (0-4) " << endl;
-			cin >> numsOf;
-			smt.setNumT(numsOf);
-
-			cout << "How many final exams are there? (0-1) " << endl;
-			cin >> numsOf;
-			smt.setNumF(numsOf);
+					notTrue = true;
+				}
+			} while (notTrue);
+			notTrue = false;
+			do {
+				cout << "How many tests are there? (0-4) ";
+				cin >> numsOf;
+				if (numsOf < 0 || numsOf > 4) {
+					cout << "\nPlease enter correct amt of test." << endl;
+				}
+				else {
+					smt.setNumT(numsOf);
+					notTrue = true;
+				}
+			} while (notTrue);
+			notTrue = false;
+			do {
+				cout << "How many final exams are there? (0-1) ";
+				cin >> numsOf;
+				if (numsOf < 0 || numsOf > 1)
+					cout << "\nPlease enter correct amt of exams." << endl;
+				else {
+					smt.setNumF(numsOf);
+					notTrue = true;
+				}
+			} while (notTrue);
 			do {
 				cout << "Please enter weights (1-9) for: "
 					<< "\n\t Tests: ";
@@ -54,7 +83,7 @@ void runBookMenu() {
 				cin >> numsOf;
 				smt.setWeigths(numsOf, 2);
 				total = 0;
-				for (int i = 0; i < 3; i++) 
+				for (int i = 0; i < 3; i++)
 					total += smt.getWeights(i);
 				if (total != 10) {
 					cout << "Weights not accepted.\n" << endl;
@@ -64,7 +93,17 @@ void runBookMenu() {
 			break;
 		case 'A':
 			if (sFlag) {
-				//
+				cout << "\nPlease enter Student's Last Name: ";
+				cin >> name;
+				stu.setLast(name);
+
+				cout << "\nPlease enter Student's First Name: ";
+				cin >> name;
+				stu.setFirst(name);
+
+				cout << "\nPlease enter student ID number: ";
+				cin >> numsOf;
+				stu.setID(numsOf);
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -125,6 +164,5 @@ void runBookMenu() {
 			break;
 		}
 
-	} while (option != 'Q' ||
-		option != 'q');
+	} while (option != 'Q');
 }

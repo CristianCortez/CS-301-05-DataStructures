@@ -1,3 +1,5 @@
+#include "GradeBook.h"
+
 Semester::Semester() {
 	cout << "obj built.";
 }
@@ -14,8 +16,7 @@ void Semester::setNumF(int num) {
 void Semester::setWeigths(int num, int idx) {
 	weights[idx] = num;
 }
-
-int Semester::getNumP(){
+int Semester::getNumP() {
 	return numPrograms;
 }
 int Semester::getNumT() {
@@ -26,4 +27,30 @@ int Semester::getNumF() {
 }
 int Semester::getWeights(int idx) {
 	return weights[idx];
+}
+
+Student::Student(){}
+
+void Student::setLast(string name) {
+	lastName = name;
+}
+void Student::setFirst(string name) {
+	firstName = name;
+}
+void Student::setID(int num) {
+	ID = num;
+}
+string Student::getLast() {
+	return lastName;
+}
+string Student::getFirst() {
+	return firstName;
+}
+int Student::getID() {
+	return ID;
+}
+void Student::printStu() {
+	cout << "\n Name: " << getLast()
+		<< ", " << getFirst()
+		<< "\n ID number: " << getID();
 }

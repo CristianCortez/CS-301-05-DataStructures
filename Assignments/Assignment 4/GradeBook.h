@@ -31,9 +31,17 @@ class Student : public Semester{
 private:
 	string lastName;
 	string firstName;
-	int stdNum;
-	Student* next;
+	int ID;
+	//Student* next;
 public:
+	Student();
+	void setLast(string);
+	void setFirst(string);
+	void setID(int);
+	string getLast();
+	string getFirst();
+	int getID();
+	void printStu();
 
 };
 

@@ -29,34 +29,7 @@ int Semester::getWeights(int idx) {
 	return weights[idx];
 }
 
-Student::Student(){}
-
-void Student::setLast(string name) {
-	lastName = name;
-}
-void Student::setFirst(string name) {
-	firstName = name;
-}
-void Student::setID(int num) {
-	ID = num;
-}
-string Student::getLast() {
-	return lastName;
-}
-string Student::getFirst() {
-	return firstName;
-}
-int Student::getID() {
-	return ID;
-}
-void Student::printStu() {
-	cout << "\n Name: " << getLast()
-		<< ", " << getFirst()
-		<< "\n ID number: " << getID();
-}
-
 GradeBook::GradeBook() {
-	//gHead = nullptr;
 	headPtr = nullptr;
 }
 GradeBook::~GradeBook() {
@@ -64,6 +37,14 @@ GradeBook::~GradeBook() {
 		while (headPtr) {
 			Students* tmp = headPtr;
 			headPtr = headPtr->next;
+			delete tmp->saddness.prg;
+			delete tmp->saddness.tst;
+			delete tmp->saddness.fnl;
+
+			tmp->saddness.prg = nullptr;
+			tmp->saddness.tst = nullptr;
+			tmp->saddness.fnl = nullptr;
+
 			delete tmp;
 		}
 	}
@@ -90,23 +71,24 @@ void GradeBook::addStudent(string lName, string fName, int id,
 	//headPtr = newStu;
 }
 void GradeBook::addGrade(string name, char ptf, int grd, int idx) {
-	Students* fwdPtr = headPtr;
-	while (fwdPtr) {
-		if (fwdPtr->lastName == name) {
+	Students* tmp = headPtr;
+	while (tmp) {
+		if (tmp->lastName == name) {
 			switch (ptf) {
 			case 'P':
-				fwdPtr->saddness.prg[idx] = grd;
+				tmp->saddness.prg[idx] = grd;
 				break;
 			case 'T':
-				fwdPtr->saddness.prg[idx] = grd;
+				tmp->saddness.tst[idx] = grd;
 				break;
 			case 'F':
-				fwdPtr->saddness.prg[idx] = grd;
+				tmp->saddness.fnl[idx] = grd;
 				break;
 			}
+			tmp = NULL;
 		}
 		else
-			fwdPtr = fwdPtr->next;
+			tmp = tmp->next;
 	}
 }
 void GradeBook::alphaMe(Students* head, Students* newStu, int idx) {
@@ -126,6 +108,46 @@ void GradeBook::alphaMe(Students* head, Students* newStu, int idx) {
 		tmp->next = newStu;*/
 		alphaMe(tmp, newStu, idx);
 	}
+}
+void GradeBook::changeGrade(int id, int grd, char ptf, int idx) {
+	Students* tmp = headPtr;
+	if (tmp) {
+		while (tmp) {
+			if (tmp->ID == id) {				
+				switch (ptf) {
+				case 'P':
+					tmp->saddness.prg[idx] = grd;
+					break;
+				case 'T':
+					tmp->saddness.tst[idx] = grd;
+					break;
+				case 'F':
+					tmp->saddness.fnl[idx] = grd;
+					break;
+				}
+				tmp = NULL;
+			}
+			else {
+				tmp = tmp->next;
+			}
+		}
+	}
+}
+string GradeBook::printStuds() {
+	ostringstream prtList;
+	Students* tmp = headPtr;
+	if (tmp) {
+		while (tmp) {
+			prtList << "\nName: "
+				<< tmp->lastName << ", "
+				<< tmp->firstName << "\nID#: "
+				<< tmp->ID
+				<< "\nAverage Grade: "
+				<< tmp->grd;
+			tmp = tmp->next;
+		}
+	}
+	return prtList.str();
 }
 int GradeBook::getLength() {
 	Students* currentNodeAddr = headPtr;

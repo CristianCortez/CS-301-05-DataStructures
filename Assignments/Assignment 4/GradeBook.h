@@ -44,48 +44,16 @@ struct Students {
 
 class GradeBook : public Semester {
 private:
-	//Grades* gHead;
 	Students* headPtr;
 public:
 	GradeBook();
-	~GradeBook();
-	
+	~GradeBook();	
 	void addStudent(string, string, int, int, int, int);
 	void addGrade(string, char, int, int);
 	void alphaMe(Students*, Students*, int);
-
+	void changeGrade(int, int, char, int);
+	string printStuds();
 	int getLength();
-	string printList();
-	bool getItem(int);
-	bool isFull();
-	bool deleteItem(int);
-
 };
-class Student : public Semester{
-private:
-	string lastName;
-	string firstName;
-	int ID;
-	
-	Grades* headPtr;
-public:
-	Student();
-	void setLast(string);
-	void setFirst(string);
-	void setID(int);
-	string getLast();
-	string getFirst();
-	int getID();
-	void printStu();
-
-};
-
-/*class Grades : public Student {
-private:
-	int num;
-	int denom;
-public:
-
-};*/
 
 #endif // !GRADEBOOK_H

@@ -1,0 +1,12 @@
+Write a function, isPalindrome, that accepts a string and determines if the string is a palindrome. 
+void isPalindrome(string);
+
+A palindrome is any word, phrase, or sentence that reads the same forward and backward. This function must use recursion to solve this problem. The function must accept a string argument that may be a single word or an entire phrase. Spaces and numbers must be considered by the function. These means that "kayak " is not a palindrome because of the extra space at the end, while "kayak" IS a palindrome. 
+
+Next, write a driver that prompts the user for a string, and tells the user if it is or is not a palindrome by passing the string to your function. The output should look like this:
+***Notice the space after kayak.***Enter a string to test: kayak The string 'kayak ' is not a palindrome. 
+Enter a string to test: kayyakThe string 'kayyak' is a Palindrome
+Enter a string to test: kayakThe string 'kayak' is a palindrome.
+Enter a string to test: this is a si sihtThe string 'this is a si siht' is a palindrome.
+
+For this assignment, 10% of the score will be for style! Write a good driver. Any non-recursive solution will receive a zero. Submit your single cpp driver file and a screenshot by the due date.

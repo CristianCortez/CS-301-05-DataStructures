@@ -23,12 +23,13 @@ void runBookMenu() {
 
 	int numsOf = 0;
 	int total = 0;
+	int id;
 
-	string name;
+	string lName;
+	string fName;
 
 	Semester smt;
-	Student stu;
-	Grades grd;
+	GradeBook stu;
 	
 	do {
 		notTrue = false;
@@ -94,16 +95,14 @@ void runBookMenu() {
 		case 'A':
 			if (sFlag) {
 				cout << "\nPlease enter Student's Last Name: ";
-				cin >> name;
-				stu.setLast(name);
-
+				cin >> lName;
+				
 				cout << "\nPlease enter Student's First Name: ";
-				cin >> name;
-				stu.setFirst(name);
-
+				cin >> fName;
+				
 				cout << "\nPlease enter student ID number: ";
-				cin >> numsOf;
-				stu.setID(numsOf);
+				cin >> id;
+				stu.addStudent(lName, fName, id, smt.getNumP, smt.getNumT, smt.getNumF);
 			}
 			else {
 				cout << "Please enter a semester first." << endl;

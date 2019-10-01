@@ -1,7 +1,7 @@
 #ifndef GRADEBOOKUTILITY_H
 #define GRADEBOOKUTILTIY_H
 
-void runDescription();
+string runDescription();
 void runBookMenu();
 
 #endif // !GRADEBOOKUTILITY_H

@@ -1,7 +1,7 @@
 #include "GradeBook.h"
 
 Semester::Semester() {
-	cout << "obj built. \n";
+	//cout << "obj built.";
 }
 
 void Semester::setNumP(int num) {
@@ -37,9 +37,9 @@ GradeBook::~GradeBook() {
 		while (headPtr) {
 			Students* tmp = headPtr;
 			headPtr = headPtr->next;
-			delete tmp->saddness.prg;
-			delete tmp->saddness.tst;
-			delete tmp->saddness.fnl;
+			delete[] tmp->saddness.prg;
+			delete[] tmp->saddness.tst;
+			delete[] tmp->saddness.fnl;
 
 			tmp->saddness.prg = nullptr;
 			tmp->saddness.tst = nullptr;
@@ -53,9 +53,12 @@ void GradeBook::addStudent(string lName, string fName, int id,
 								int pNum, int tNum, int fNum) {
 	int i;
 	Students* newStu = new Students;
+	Students* head = headPtr;
 	newStu->lastName = lName;
 	newStu->firstName = fName;
 	newStu->ID = id;
+	newStu->pGrd = 0;
+	newStu->tfGrd = 0;
 	newStu->saddness.prg = new int[pNum];
 	newStu->saddness.tst = new int[tNum];
 	newStu->saddness.fnl = new int[fNum];
@@ -66,9 +69,7 @@ void GradeBook::addStudent(string lName, string fName, int id,
 	for (i = 0; i < fNum; i++)
 		newStu->saddness.fnl[i] = -1;
 	newStu->next = NULL;
-	alphaMe(headPtr, newStu, 0);
-	//newStu->next = headPtr;
-	//headPtr = newStu;
+	alphaMe(newStu);
 }
 void GradeBook::addGrade(string name, char ptf, int grd, int idx) {
 	Students* tmp = headPtr;
@@ -91,22 +92,41 @@ void GradeBook::addGrade(string name, char ptf, int grd, int idx) {
 			tmp = tmp->next;
 	}
 }
-void GradeBook::alphaMe(Students* head, Students* newStu, int idx) {
-	Students* tmp = head;
-	if (tmp == NULL || tmp->lastName[idx] > newStu->lastName[idx]) {
-		newStu->next = tmp;
-		tmp = newStu;
-	}
-	else if (tmp->lastName[idx] == newStu->lastName[idx]) {
-		alphaMe(tmp, newStu, idx++);
+void GradeBook::alphaMe(Students* newStu) {
+	Students* tmpHead = headPtr;
+	Students* previous = tmpHead;
+	int i = 0;
+	if (headPtr == NULL || headPtr->lastName[0] > newStu->lastName[0]) {
+		newStu->next = headPtr;
+		headPtr = newStu;
 	}
 	else {
-		//while (tmp->next != NULL && tmp->lastName[idx] < newStu->lastName[idx]) {
-			tmp = tmp->next;
-		//}
-		/*newStu->next = tmp->next;
-		tmp->next = newStu;*/
-		alphaMe(tmp, newStu, idx);
+		do {
+			previous = tmpHead;
+			if (tmpHead->lastName[i] == newStu->lastName[i]) {
+				i++;
+			}
+			
+			else {
+				i = 0;
+				
+				tmpHead = tmpHead->next;
+			}
+		} while (tmpHead && tmpHead->lastName[i] <= newStu->lastName[i]);
+		if (previous->lastName.compare(newStu->lastName) == 0) {
+			if (previous->ID > newStu->ID) {
+				newStu->next = previous;
+				previous = newStu;
+			}
+			else {
+				newStu->next = previous->next;
+				previous->next = newStu;
+			}
+		}
+		else {
+			newStu->next = previous->next;
+			previous->next = newStu;
+		}
 	}
 }
 void GradeBook::changeGrade(int id, int grd, char ptf, int idx) {
@@ -133,17 +153,43 @@ void GradeBook::changeGrade(int id, int grd, char ptf, int idx) {
 		}
 	}
 }
-string GradeBook::printStuds() {
+string GradeBook::printStuds(bool out, int pNum, int tNum, int fNum) {
 	ostringstream prtList;
 	Students* tmp = headPtr;
+	int i;
 	if (tmp) {
 		while (tmp) {
 			prtList << "\nName: "
 				<< tmp->lastName << ", "
 				<< tmp->firstName << "\nID#: "
 				<< tmp->ID
-				<< "\nAverage Grade: "
-				<< tmp->grd;
+				<< "\nAverage Prgrogram Grade: "
+				<< tmp->pGrd
+				<< "\nAverage Test Grade: "
+				<< tmp->tfGrd;
+			if (out) {
+				prtList << "\n\nGrades: \n\tPrograms: ";
+				for (i = 0; i < pNum; i++) {
+					if (tmp->saddness.prg[i] != -1) {
+						prtList << "\n\t\tProgram #" << i + 1 << ": "
+							<< tmp->saddness.prg[i];
+					}
+				}
+				prtList << "\n\tTests: ";
+				for (i = 0; i < tNum; i++) {
+					if (tmp->saddness.tst[i] != -1) {
+						prtList << "\n\t\tTest #" << i + 1 << ": "
+							<< tmp->saddness.tst[i];
+					}
+				}
+				prtList << "\n\tFinal: ";
+				for (i = 0; i < fNum; i++) {
+					if (tmp->saddness.fnl[i] != -1) {
+						prtList << "\n\t\tFinal #" << i + 1 << ": "
+							<< tmp->saddness.fnl[i];
+					}
+				}
+			}
 			tmp = tmp->next;
 		}
 	}
@@ -159,4 +205,70 @@ int GradeBook::getLength() {
 		} while (currentNodeAddr);
 	}
 	return classSize;
+}
+void GradeBook::setAssgG(int indx) {
+	Students* tmp = headPtr;
+	int grade;
+	if (tmp) {
+		while (tmp) {
+			cout << "\n\tName: " << tmp->lastName << ", " << tmp->firstName
+				<< "\n\tProgramming Assingment #" << indx << ": "
+				<< "\n\t\t:Grade: ";
+			cin >> grade;
+			tmp->saddness.prg[indx] = grade;
+			tmp = tmp->next;
+		}
+	}
+}
+void GradeBook::setTestG(int indx) {
+	Students* tmp = headPtr;
+	int grade;
+	if (tmp) {
+		while (tmp) {
+			cout << "\n\tName: " << tmp->lastName << ", " << tmp->firstName
+				<< "\n\tTest #" << indx <<": "
+				<< "\n\t\t:Grade: ";
+			cin >> grade;
+			tmp->saddness.tst[indx] = grade;
+			tmp = tmp->next;
+		}
+	}
+}
+void GradeBook::setFinalG(int indx) {
+	Students* tmp = headPtr;
+	int grade;
+	if (tmp) {
+		while (tmp) {
+			cout << "\n\tName: " << tmp->lastName << ", " << tmp->firstName
+				<< "\n\tFinal #" << indx << ": "
+				<< "\n\t\t:Grade: ";
+			cin >> grade;
+			tmp->saddness.fnl[indx] = grade;
+			tmp = tmp->next;
+		}
+	}
+}
+void GradeBook::calcGrade(int pNum, int tNum, int fNum) {
+	Students* tmp = headPtr;
+	int pAvg = 0, tfAvg = 0;
+	int counter = 0, i;
+	if (tmp) {
+		while (tmp) {
+			for (i = 0; i < pNum; i++) {
+				pAvg += tmp->saddness.prg[i];
+			}
+			tmp->pGrd = pAvg / i;
+			for (i = 0; i < tNum; i++) {
+				tfAvg += tmp->saddness.tst[i];
+				counter++;
+			}
+			for (i = 0; i < fNum; i++) {
+				tfAvg += tmp->saddness.fnl[i];
+				counter++;
+			}
+			tmp->tfGrd = tfAvg / counter;
+			tmp = tmp->next;
+		}
+		cout << "\nGrade Calulated.";
+	}
 }

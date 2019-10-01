@@ -1,0 +1,10 @@
+Here is the description: 
+	S: build new semester
+	A: add new student
+	P: input program grades
+	T: input test grades
+	F: input final grades
+	C: change grade for student
+	G: calculate grade
+	O: output grades to file
+	Q: quit

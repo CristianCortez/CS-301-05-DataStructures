@@ -1,8 +1,9 @@
 #include "GradeBook.h"
 #include "GradeBookUtility.h"
 
-void runDescription() {
-	cout << "Here is the description: "
+string runDescription() {
+	ostringstream prt;
+	prt << "Here is the description: "
 		<< "\n\tS: build new semester"
 		<< "\n\tA: add new student"
 		<< "\n\tP: input program grades"
@@ -12,32 +13,44 @@ void runDescription() {
 		<< "\n\tG: calculate grade"
 		<< "\n\tO: output grades to file"
 		<< "\n\tQ: quit" << endl;
-	return;
+	return prt.str();
 }
 
 void runBookMenu() {
+	ofstream trnFile;
+	ofstream inFile;
+	ofstream outFile;
+
 	char option;
+	char ptf;
 
 	bool sFlag = false;
 	bool notTrue;
+	bool out = false;
 
 	int numsOf = 0;
 	int total = 0;
 	int id;
-	int grade = 0;
-	int idx = 0;
+	int assgNum;
+	int grd;
+	int idx;
 
 	string lName;
 	string fName;
 
-	char ptf;
-
 	Semester smt;
 	GradeBook stu;
+	
+	trnFile.open("Grades.trn");
+	inFile.open("Grades.data");
+	outFile.open("Grades.out");
+
+	trnFile << runDescription();
 
 	do {
 		notTrue = false;
-		cout << " Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
+		out = false;
+		cout << "\n Please Enter an option (S, A, P, T, F, C, G, O, Q) :";
 		cin >> option;
 		toupper(option);
 		switch (option) {
@@ -52,7 +65,7 @@ void runBookMenu() {
 					smt.setNumP(numsOf);
 					notTrue = true;
 				}
-			} while (notTrue);
+			} while (!notTrue);
 			notTrue = false;
 			do {
 				cout << "How many tests are there? (0-4) ";
@@ -64,7 +77,7 @@ void runBookMenu() {
 					smt.setNumT(numsOf);
 					notTrue = true;
 				}
-			} while (notTrue);
+			} while (!notTrue);
 			notTrue = false;
 			do {
 				cout << "How many final exams are there? (0-1) ";
@@ -75,16 +88,16 @@ void runBookMenu() {
 					smt.setNumF(numsOf);
 					notTrue = true;
 				}
-			} while (notTrue);
+			} while (!notTrue);
 			do {
-				cout << "Please enter weights (1-9) for: "
-					<< "\n\t Tests: ";
+				cout << "Please enter weights (1-9) for: \n"
+					<< "\t Programs: ";
 				cin >> numsOf;
 				smt.setWeigths(numsOf, 0);
-				cout << "\n\t Tests: ";
+				cout << "\t Tests: ";
 				cin >> numsOf;
 				smt.setWeigths(numsOf, 1);
-				cout << "\n\t FInals: ";
+				cout << "\t FInals: ";
 				cin >> numsOf;
 				smt.setWeigths(numsOf, 2);
 				total = 0;
@@ -100,13 +113,13 @@ void runBookMenu() {
 			if (sFlag) {
 				cout << "\nPlease enter Student's Last Name: ";
 				cin >> lName;
-
-				cout << "\nPlease enter Student's First Name: ";
+				
+				cout << "Please enter Student's First Name: ";
 				cin >> fName;
-
-				cout << "\nPlease enter student ID number: ";
+				
+				cout << "Please enter student ID number: ";
 				cin >> id;
-				stu.addStudent(lName, fName, id, smt.getNumP, smt.getNumT, smt.getNumF);
+				stu.addStudent(lName, fName, id, smt.getNumP(), smt.getNumT(), smt.getNumF());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -114,17 +127,16 @@ void runBookMenu() {
 			break;
 		case 'P':
 			if (sFlag) {
-				cout << "Enter the programming assignment you wish to access: ";
-				cin >> idx;
-				cout << "\n" << endl;
-				if (idx >= 0 && idx < smt.getNumP()) {
-					ptf = 'p';
-					Students *temp;
-					// temp = head;
-					//while ()
-				}
-				else
-					cout << "Invalid chosen programming assignment number\n" << endl;
+				do {
+					cout << "\nEnter the program number you want to access: ";
+					cin >> assgNum;
+					if (assgNum >= 0 && assgNum <= smt.getNumP()) {
+						assgNum -= 1;
+						stu.setAssgG(assgNum);
+					}
+					else
+						cout << "The program number you have entered is invalid.\n" << endl;
+					} while (assgNum < 0 && assgNum > smt.getNumP());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -132,14 +144,16 @@ void runBookMenu() {
 			break;
 		case 'T':
 			if (sFlag) {
-				cout << "Enter the test you wish to access: ";
-				cin >> idx;
-				cout << "\n" << endl;
-				if (idx >= 0 && idx < smt.getNumT()) {
-
-				}
-				else
-					cout << "Invalid chosen test number\n" << endl;
+				do {
+					cout << "\nEnter the test number you want to access: ";
+					cin >> assgNum;
+					if (assgNum >= 0 && assgNum <= smt.getNumT()) {
+						assgNum -= 1;
+						stu.setTestG(assgNum);
+					}
+					else
+						cout << "The program number you have entered is invalid.\n" << endl;
+				} while (assgNum < 0 && assgNum > smt.getNumT());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -147,7 +161,16 @@ void runBookMenu() {
 			break;
 		case 'F':
 			if (sFlag) {
-				//
+				do {
+					cout << "\nEnter the program number you want to access: ";
+					cin >> assgNum;
+					if (assgNum >= 0 && assgNum <= smt.getNumF()) {
+						assgNum -= 1;
+						stu.setFinalG(assgNum);
+					}
+					else
+						cout << "The program number you have entered is invalid.\n" << endl;
+				} while (assgNum < 0 && assgNum > smt.getNumF());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -155,7 +178,18 @@ void runBookMenu() {
 			break;
 		case 'C':
 			if (sFlag) {
-				//
+				cout << "\nPlease enter student ID name: ";
+				cin >> id;
+				cout << "\nPlease enter new grade: ";
+				cin >> grd;
+				do {
+					cout << "Please enter the type of assignment (P, T, F): ";
+					cin >> ptf;
+				} while (ptf != 'P' && ptf != 'T' && ptf != 'F');
+				cout << "Please enter the index of the type " << ptf << ": ";
+				cin >> idx;
+				stu.changeGrade(id, grd, ptf, idx);
+
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -163,7 +197,7 @@ void runBookMenu() {
 			break;
 		case 'G':
 			if (sFlag) {
-				//
+				stu.calcGrade(smt.getNumP(), smt.getNumT(), smt.getNumF());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
@@ -171,13 +205,22 @@ void runBookMenu() {
 			break;
 		case 'O':
 			if (sFlag) {
-				//
+				cout << "\nOutputting to \"Grades.out\"" << endl;
+				outFile << stu.printStuds(out, smt.getNumP(), smt.getNumT(), smt.getNumF());
 			}
 			else {
 				cout << "Please enter a semester first." << endl;
 			}
 			break;
 		case 'Q':
+			if (sFlag) {
+				out = true;
+				cout << "\nOutputting to \"Grades.dat\"" << endl;
+				inFile << stu.printStuds(out, smt.getNumP(), smt.getNumT(), smt.getNumF());				
+			}
+			else {
+				cout << "Please enter a semester first." << endl;
+			}
 			break;
 		default:
 			cout << "\n NOT A VALID OPTION." << endl;
@@ -185,4 +228,7 @@ void runBookMenu() {
 		}
 
 	} while (option != 'Q');
+	trnFile.close();
+	inFile.close();
+	outFile.close();
 }

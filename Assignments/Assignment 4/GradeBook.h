@@ -37,12 +37,13 @@ struct Students {
 	string lastName;
 	string firstName;
 	int ID;
-	int grd;
+	int pGrd;
+	int tfGrd;
 	Grades saddness;
 	Students* next;
 };
 
-class GradeBook : public Semester {
+class GradeBook {//: public Semester {
 private:
 	Students* headPtr;
 public:
@@ -50,10 +51,15 @@ public:
 	~GradeBook();	
 	void addStudent(string, string, int, int, int, int);
 	void addGrade(string, char, int, int);
-	void alphaMe(Students*, Students*, int);
+	void alphaMe(Students*);
 	void changeGrade(int, int, char, int);
-	string printStuds();
+	string printStuds(bool, int, int, int);
 	int getLength();
+
+	void setAssgG(int);
+	void setTestG(int);
+	void setFinalG(int);
+	void calcGrade(int, int, int);
 };
 
 #endif // !GRADEBOOK_H

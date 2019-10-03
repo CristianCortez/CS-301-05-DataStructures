@@ -1,33 +1,34 @@
-#pragma once
 #ifndef ALLERGY_H
 #define ALLERGY_H
 #include "includes.h"
 
-class Allergen {
-	// 'al' used for all memebers of Allergen.
+
+
+class DataBase {
 private:
-	string alName;
-	string alType;
-	int alNum;
-	string alNomen;
-
-	Allergen* next;
+	struct Allergen {
+		string comName;
+		string sciName;
+		string type;
+		int num;
+		Allergen* next;
+	};
+	Allergen* headPtr;
 public:
-	void setAlName();
-	void getAlName();
-	void setAlType();
-	void getAlType();
-	void setAlNum();
-	void getAlNum();
-	void setAlNomen();
-	void getAlNomen();
+	DataBase() { headPtr = nullptr; }
+	~DataBase();
 
+	void addAl(string, string, string, int);
+	void delAl(int, string, string, int);
+	void findComName(string);
+	void findSciName(string);
+	void findType(string);
+	void findNum(int);
+
+	void print();
+	int getLength();
+
+	
 };
 
-struct Allergen {
-	string name;
-	string type;
-	int number;
-	string nomenclature;
-};
 #endif // !ALLERGY_H

@@ -1,0 +1,247 @@
+
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+
+using namespace std;
+
+//class Production
+class Production {
+private:
+   string lhs;
+   vector<string> rhs_options; // list of options for expansion
+   vector<double> trans_probs; // list of probabilities associated
+                       // with each choice
+public:
+   Production();
+   Production(string);
+   void add_rhs(string, double); // adds new rhs to the production
+   string expand(); // returns one of the rhs choices using
+                          // a random number generator
+};
+
+//default constructor
+Production::Production()
+{
+   lhs="";  
+}
+
+//parameterized constructor
+Production::Production(string non_terminal)
+{
+   lhs=non_terminal;  
+}
+
+//function to add rhs to lhs
+void Production::add_rhs(string terminal, double prob)
+{
+   rhs_options.push_back(terminal);
+   trans_probs.push_back(prob);
+}
+
+//function to return one of rhs choices
+string Production::expand()
+{
+   srand(time(NULL));
+   double prob=(double)rand()/(double)RAND_MAX;
+   cout<<"expand prob:"<<prob<<endl;
+   string str="";
+   int i;
+   for(i=0 ; i<trans_probs.size();i++)
+   {
+       double tp=trans_probs.at(i);
+       if(tp >= prob)
+           break;      
+   }
+   cout<<"i:"<<i<<endl;
+   str=rhs_options.at(i);
+   return str;
+}
+
+//main function
+int main()
+{
+   srand(time(NULL));
+   Production production("$"); //create a production object with a non-terminal symbol
+   double prob;
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("int main() { return 0; }$",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("$",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs(" ",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("${ } ",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("if() ",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("if ( ) else",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("while( ) ",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("while( )$",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("=;$;",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("$ ",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("+",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("-",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("*",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("/",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("int",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("double",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("double",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("$$[empty]",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("$[empty]",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("A",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("B",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("C",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("D",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("E",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("F",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("G",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("H",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("I",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("J",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("K",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("L",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("M",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("N",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("O",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("P",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("Q",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("R",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("S",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("T",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("U",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("V",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("W",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("X",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("Y",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("Z",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("a",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("b",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("c",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("d",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("e",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("f",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("g",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("h",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("i",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("j",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("k",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("l",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("m",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("n",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("o",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("p",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("q",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("r",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("s",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("t",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("u",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("v",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("w",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("x",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("y",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("z",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("0",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("1",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("2",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("3",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("4",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("5",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("6",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("7",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("8",prob);
+   prob=(double)rand()/(double)RAND_MAX;
+   production.add_rhs("9",prob);
+   ofstream outfile("output.txt");
+   while(1)
+   {
+       string str=production.expand();
+       size_t found=str.find("$");
+       if(found!=string::npos)
+           outfile<<str.substr(0,found);
+       else
+           break;      
+   }
+   return 0;
+}
+
+Output:
+
+int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }int main() { return 0; }

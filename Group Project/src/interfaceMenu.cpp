@@ -7,6 +7,7 @@ void runDescription() {
 		<< " easy data entry and access.\n" << endl;
 }
 
+//Search Function
 void searchMenu() {
 	int opt = 0;
 	string name, type, sciName;
@@ -54,6 +55,47 @@ void searchMenu() {
 	
 }
 
+//Delete Function
+void deleteMenu() {
+	int opt = 0;
+	string name, sciName;
+	int number;
+
+	while (opt != 4) {
+		cout << "\n***************************"
+			<< "\n*		Aller Delete Menu	*"
+			<< "\n*		1. Common Name		*"
+			<< "\n*		2. Nomenclature		*"
+			<< "\n*		3. NCBI Number		*"
+			<< "\n*		4. Exit				*"
+			<< "\n****************************" << endl;
+	}
+
+	switch (opt) {
+		case 1: // common name
+			cout << "Please enter the name of the allergen you wish to delete: " << endl;
+			cin >> name;
+			break;
+
+		case 2: // Nomenclature
+			cout << "Please enter the Nomenclature of the allergen you wish to delete: " << endl;
+			cin >> sciName;
+			break;
+
+		case 3: //NCBI Number
+			cout << "Please enter the NCBI Number of the allergen you wish to delete: " << endl;
+			cin >> number;
+			break;
+
+		case 4: //exit
+			break;
+
+		default:
+			cout << "\tNot a valid option" << endl;
+			break;
+	}
+}
+
 void runMainMenu() {
 	int option = 0;
 	bool sFlag = false;
@@ -69,26 +111,37 @@ void runMainMenu() {
 		cin >> option;
 
 		switch (option) {
-			case 1: // add
-				if (sFlag) {
+		case 1: // add
+			if (sFlag) {
 
-				}
-				else {
-					cout << "Please enter an allergen first" << endl;
-				}
-				break;
-			case 2: // delete
-				if (sFlag) {
+			}
+			else {
+				cout << "Please enter an allergen first." << endl;
+			}
+			break;
+		case 2: // delete
+			if (sFlag) {
 
-				}
-				else {
-					cout << "Please enter an allergen first" << endl;
-				}
-				break;
-			case 3: // searches
+			}
+			else {
+				cout << "Please enter an allergen first." << endl;
+			}
+			break;
+		case 3: // searches
+			if (sFlag) {
 				searchMenu();
+			}
+			else {
+				cout << "Please enter an allergen first." << endl;
+			}
 				break;
 			case 4: // quit
+				if (sFlag) {
+
+				}
+				else {
+					cout << "Please enter an allergen first." << endl;
+				}
 				break;
 			default:
 				cout << "\tNot a valid option." << endl;

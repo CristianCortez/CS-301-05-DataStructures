@@ -23,30 +23,22 @@ void searchMenu() {
 		case 1: // common name
 			cout << "Enter the name of the allergen you wish to search up: " << endl;
 			cin >> name;
-
 			db.findComName(name);
-
 			break;
 		case 2: // allergen type
 			cout << "Enter the allergen type you wish to search up: " << endl;
 			cin >> type;
-
 			db.findType(type);
-
 			break;
 		case 3: // nomenclature
 			cout << "Enter the Nomenclature you wish to search up: " << endl;
 			cin >> sciName;
-
 			db.findSciName(sciName);
-
 			break;
 		case 4: // ncbi number
 			cout << "Enter the NCBI Number you wish to search up: " << endl;
 			cin >> num;
-
 			db.findNum(num);
-
 			break;
 		case 5: // exit
 			break;
@@ -55,7 +47,7 @@ void searchMenu() {
 			cout << "\tNot a valid option." << endl;
 		}
 	}
-	
+
 }
 
 //Delete Function
@@ -79,21 +71,20 @@ void deleteMenu() {
 		case 1: // common name
 			cout << "Please enter the name of the allergen you wish to delete: " << endl;
 			cin >> name;
-
+			db.delComName(name);
 			break;
 		case 2: // Nomenclature
 			cout << "Please enter the Nomenclature of the allergen you wish to delete: " << endl;
 			cin >> sciName;
-
+			db.delSciName(sciName);
 			break;
 		case 3: //NCBI Number
 			cout << "Please enter the NCBI Number of the allergen you wish to delete: " << endl;
 			cin >> num;
-
+			db.delNum(num);
 			break;
 		case 4: //exit
 			break;
-
 		default:
 			cout << "\tNot a valid option" << endl;
 			break;
@@ -110,14 +101,14 @@ void runMainMenu() {
 
 	DataBase db;
 
-	do{
+	do {
 		cout << "\n*************************"
-				<< "\n*   AllerCo DataBase    *"
-				<< "\n* 1. Add Entry          *"
-				<< "\n* 2. Delete Entry       *"
-				<< "\n* 3. Search Entry       *"
-				<< "\n* 4. Quit               *"
-				<< "\n*************************" << endl;
+			<< "\n*   AllerCo DataBase    *"
+			<< "\n* 1. Add Entry          *"
+			<< "\n* 2. Delete Entry       *"
+			<< "\n* 3. Search Entry       *"
+			<< "\n* 4. Quit               *"
+			<< "\n*************************" << endl;
 		cin >> option;
 
 		switch (option) {
@@ -156,18 +147,18 @@ void runMainMenu() {
 			else {
 				cout << "Please enter an allergen first." << endl;
 			}
-				break;
-			case 4: // quit
-				if (sFlag) {
+			break;
+		case 4: // quit
+			if (sFlag) {
 
-				}
-				else {
-					cout << "Please enter an allergen first." << endl;
-				}
-				break;
-			default:
-				cout << "\tNot a valid option." << endl;
-				break;
+			}
+			else {
+				cout << "Please enter an allergen first." << endl;
+			}
+			break;
+		default:
+			cout << "\tNot a valid option." << endl;
+			break;
 		}
 	} while (option = !5);
 }

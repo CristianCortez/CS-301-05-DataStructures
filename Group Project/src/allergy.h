@@ -24,11 +24,14 @@ public:
 	void findSciName(string);
 	void findType(string);
 	void findNum(int);
+	void delComName(string);
+	void delSciName(string);
+	void delNum(int);
 
 	void print();
 	int getLength();
 
-	
+
 };
 
 #endif // !ALLERGY_H

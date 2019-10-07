@@ -11,3 +11,37 @@ DataBase::~DataBase() {
 		}
 	}
 }
+
+void DataBase::delComName(string s) {
+	Allergen* temp = headPtr;
+	Allergen* tempPrev = nullptr;
+	while (temp->comName != "s") {
+		tempPrev = temp;
+		temp = temp->next;
+	}
+	tempPrev->next = temp->next;
+	delete temp;
+}
+
+
+void DataBase::delSciName(string s) {
+	Allergen* temp = headPtr;
+	Allergen* tempPrev = nullptr;
+	while (temp->sciName != "s") {
+		tempPrev = temp;
+		temp = temp->next;
+	}
+	tempPrev->next = temp->next;
+	delete temp;
+}
+
+void DataBase::delNum(int n) {
+	Allergen* temp = headPtr;
+	Allergen* tempPrev = nullptr;
+	while (temp->num != n) {
+		tempPrev = temp;
+		temp = temp->next;
+	}
+	tempPrev->next = temp->next;
+	delete temp;
+}

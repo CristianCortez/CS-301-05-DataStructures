@@ -10,7 +10,12 @@ int main() {
 
 		switch (ch) {
 			case 'A':
-				opt.setAdd();
+				do {
+					opt.setAdd();
+
+					cout << "Do you want to add another allergen? (Y\N) " << endl;
+					cin >> choice;
+				} while (choice != 'N');
 				break;
 			case 'D':
 				do {
@@ -31,6 +36,7 @@ int main() {
 				} while (choice != 'N');
 				break;
 			/*case 'H':
+				opt.setSymptoms();
 				break;
 				*/
 			case 'Q':

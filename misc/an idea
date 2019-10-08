@@ -1,0 +1,438 @@
+//Include required library files
+#include "stdafx.h"
+#include<iostream>
+#include<stdio.h>
+#include<string>
+#include<fstream>
+
+//use namespace
+using namespace std;
+
+//Define structure named Movie
+struct MovieData
+{
+   //Declare hetrogeneous elements
+   int rank;
+   string FilmTitle;
+   string Studio;
+   double   TotalGross;
+   int   TotalTheaters;
+   double OpeningGross;
+   int   OpeningTheaters;
+   string OpeningDate;
+};
+
+//Define class Movie
+class Movie
+{
+public:
+   //Declare the essential methods
+   char describe();
+   void sortRankReport();
+   void sortTitleReport();
+};
+
+//Class Menu displays all the methods used
+//to display menu
+class Menu
+{
+public:
+   //Declare the essential methods
+   char getmenu();
+   char getReport();
+   char getSearch();
+   void setReport(char ch);
+   void setSearch(char ch);
+};
+
+
+//Class FilmDatabase contains all the methods
+//to search in the class
+class FilmDatabase
+{
+public:
+   //Declare the essential methods
+   void searchTitle();
+   void searchKeyword();
+   void searchStudio();
+   void searchMonthRelease();
+   struct MovieData fileOpen();
+};
+
+
+//Method to open the file and stores the values in the variables
+struct MovieData FilmDatabase::fileOpen()
+{
+   struct MovieData m[100];
+   ifstream file;
+   //open the file and prompt if an error occurs
+   file.open("Films2015.txt");
+
+   //Display a relevant message if file
+   //did not open
+   if (file.fail())
+   {
+       cout << "\nCan't open Films2015.txt\n";
+   }
+
+   //Read from the file
+   for (int i = 0; i < 100; i++)
+   {
+       //If file is opened then read from it
+  
+       if (file.is_open())
+       {
+           file >> m[i].rank;
+           file >> m[i].FilmTitle;
+           file >> m[i].Studio;
+           file >> m[i].TotalGross;
+           file >> m[i].TotalTheaters;
+           file >> m[i].OpeningGross;
+           file >> m[i].OpeningTheaters;
+           file >> m[i].OpeningDate;
+           return m[i];
+       }
+   }
+   //close the file
+   file.close();  
+}
+
+
+//Method to give the discription and working of the project
+char Movie::describe()
+{
+   char choice;
+   cout << "Hii in the following project, Movie names are "
+       "given released in 2015.\n The movie names are "
+       "sorted according to the Rank Report as well as "
+       "title as user demand.\n\nIn this project search "
+       "technique is also applied. User can search "
+       "by giving title name,studio name or by entering "
+       "any keyword or by month.\n";
+   cout << "\nPress X to go to Main Menu : ";
+   cin >> choice;
+   return choice;
+}
+
+//Method to display the choice of main menu
+char Menu:: getmenu()
+{
+   char choice;
+   cout << "\nMain Menu:\n";
+   cout << "D - Describe the Program :\n";
+   cout << "R - Reports : \n";
+   cout << "S - Search the Database :\n";
+   cout << "X - Exit the Program : \n";
+   cout << "Enter Selection -> ";
+   cin >> choice;
+   return choice;
+}
+
+
+//Method to represent the options after clicking report
+char Menu::getReport()
+{
+   char choice;
+   cout << "\nREPORTS MENU:\n";
+   cout << "T - Order by Film Title report\n";
+   cout << "R - Order by Rank report\n";
+   cout << "X - Return to main menu\n";
+   cout << "Enter Selection -> ";
+   cin >> choice;
+   return choice;
+}
+
+//Method shows switch case to show report choices
+void Menu::setReport(char ch)
+{
+   Movie film;
+   switch (ch)
+   {
+   case 'T':
+       film.sortTitleReport();
+       break;
+   case 'R':
+       film.sortRankReport();
+       break;
+   case 'X':
+       break;
+   default:
+       cout << "\nEnter choice correctly : ";
+   }
+}
+
+//Method sorts the data according to ranks
+void Movie::sortRankReport()
+{
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {      
+       m[i] = film.fileOpen();
+   }
+  
+   //Declare required variables
+   int temp, i, j;
+
+   //For loops used for sorting
+   for (i = 0; i <= 10; i++)
+   {
+       for (j = 0; j <= 10 - i; j++)
+       {
+           if (m[j].rank > m[j + 1].rank)
+           {
+               temp = m[j].rank;
+               m[j].rank = m[j + 1].rank;
+               m[j + 1].rank = temp;
+           }
+       }
+   }
+   cout << "\nRanks after sorting:\n\n";
+   cout << "Rank\tMovieTitle\t\t\tStudio\t\tTotal Gross"
+       "\tTotalTheaters\tOpening Gross\tOpening Theaters"
+       "\tOpening Date" << "\n";
+  
+   //Display after sorting
+   for (int j = 0; j < 10; j++)
+   {
+       cout << m[j].rank << "\t";
+       cout << m[j].FilmTitle << "\t\t\t";
+       cout << m[j].Studio << "\t\t";
+       cout << m[j].TotalGross << "\t\t";
+       cout << m[j].TotalTheaters << "\t\t";
+       cout << m[j].OpeningGross << "\t" << "\t";
+       cout << m[j].OpeningTheaters << "\t\t";
+       cout << m[j].OpeningDate << "\n";
+   }
+}
+
+//Method to display menu for search
+char Menu::getSearch()
+{
+   char choice;
+   cout << "\nSearch MENU\n";
+   cout << "T - Search by Title\n";
+   cout << "K - Search by Keyword(s)\n";
+   cout << "S - Search by Studio\n";
+   cout << "M - Search by month of release\n";
+   cout << "X - Return to main menu\n";
+   cout << "Enter Selection -> ";
+   cin >> choice;
+   return choice;
+}
+
+//Method for switch case to apply search operation
+void Menu::setSearch(char ch)
+{
+   FilmDatabase data;
+   switch (ch)
+   {
+   case 'T':
+       data.searchTitle();
+       break;
+   case 'K':
+       data.searchKeyword();
+       break;
+   case 'S':
+       data.searchStudio();
+       break;
+   case 'M':
+       data.searchMonthRelease();
+       break;
+   case 'X':
+       break;
+   default:
+       cout << "Enter choice correctly : ";
+   }
+}
+
+//Method to search according to title
+void FilmDatabase::searchTitle()
+{
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {
+       m[i] = film.fileOpen();
+   }
+   string title;
+   cout << "\nEnter the movie Title to be searched: ";
+   cin >> title;
+   for (int i = 0; i < 100; i++)
+   {
+       if (title == m[i].FilmTitle)
+       {
+           cout << "\nHi "<<title<<" present in the top "
+               "100 movie list. It is at the "<<i<<" rank.\n";
+           break;
+       }
+   }
+}
+
+//Method to search any keyword
+void FilmDatabase::searchKeyword()
+{
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {
+       m[i] = film.fileOpen();
+   }
+   string title;
+   cout << "\nEnter the movie keywords to be searched: ";
+   cin >> title;
+   for (int i = 0; i < 100; i++)
+   {
+       if (title == m[i].FilmTitle)
+       {
+           cout << "\nHi " << title << " present in the top "
+               "100 movie list. It is at the " << i << " rank\n";
+       }
+   }
+}
+
+
+//Method to search by studio names
+void FilmDatabase::searchStudio()
+{
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {
+       m[i] = film.fileOpen();
+   }
+   string st;
+   cout << "\nEnter the Studio name to be searched: ";
+   cin >> st;
+   for (int i = 0; i < 100; i++)
+   {
+       if (st == m[i].Studio)
+       {
+           cout << "\nHi " << st << " present in the top 100"
+               " movie list. It is at the " << i << " rank\n";
+       }
+   }
+}
+void FilmDatabase::searchMonthRelease()
+{
+   //struct MovieData film[100];
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {
+       m[i] = film.fileOpen();
+   }
+   string month;
+   cout << "\nEnter the movie Title to be searched: ";
+   cin >> month;
+   for (int i = 0; i < 100; i++)
+   {
+       if (month == m[i].FilmTitle)
+       {
+           cout << "\n In " << month << " present in the list."
+               " The movie released in this month is at " << i << " rank";
+       }
+   }
+}
+//Method to sort the database by movie Titles
+void Movie::sortTitleReport()
+{
+   struct MovieData m[100];
+   FilmDatabase film;
+   for (int i = 0; i < 100; i++)
+   {
+       m[i] = film.fileOpen();
+   }
+   int i, j;
+   cout << "Movie Names in alphabetical order : \n";
+   for (i = 0; i<5; i++)
+   {
+       cout << m[i].FilmTitle << "\n";
+   }
+}
+
+Project1.cpp
+
+//Include required library files
+#include "stdafx.h"
+#include<iostream>
+#include<stdio.h>
+#include<string>
+#include<fstream>
+
+//use namespace
+using namespace std;
+
+//Start the main method
+int main()
+{
+   Movie film;
+   FilmDatabase data;
+   Menu opt;
+   struct MovieData m[100];
+   char menu, choice;
+  
+   //Starts do-while loop
+   do
+   {
+       //Accepts the menu to display the choices to the user
+       char ch = opt.getmenu();
+
+       //starts switch case
+       switch (ch)
+       {
+           //case D to describe about the project
+       case 'D':
+           //method to describe about the working of project
+           menu = film.describe();
+           break;
+
+           //Case R to describe about the Report
+       case 'R':
+           do
+           {
+               //method to display choices while displaying reports
+               menu = opt.getReport();
+
+               //Method to start switch case
+               opt.setReport(menu);
+
+               //Display message to continue do-while loop
+               cout << "\nDo you want to continue (Y/N) : ";
+               cin >> choice;
+           } while (choice != 'N');
+           break;
+
+           //Case S to search in the movie database
+       case 'S':
+           do
+           {
+               //method to display choices while searching
+               menu = opt.getSearch();
+
+               //Method to start switch case
+               opt.setSearch(menu);
+
+               //Display message to continue do-while loop
+               cout << "\nDo you want to continue (Y/N) : ";
+               cin >> choice;
+           } while (choice != 'N');
+           break;
+           //case X to exit
+       case 'X':
+           exit(1);
+           break;
+       default:
+           cout << "Enter choice correctly : ";
+       }
+       //Display message to continue do-while loop
+       cout << "\nDo you want to continue (Y/N) : ";
+       cin >> choice;
+   } while (choice != 'N');
+
+   //Pause the system for a while
+   system("pause");
+
+   //return 0
+   return 0;
+}

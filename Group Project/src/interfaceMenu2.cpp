@@ -55,17 +55,47 @@ char Menu::getSearch() {
 	return choice;
 }
 
-void Menu::setDelete(char ch) {
+void Menu::setDelete(char input) {
 
 }
 
-void Menu::setSearch(char ch) {
+void Menu::setSearch(char input) {
+	string comName, sciName, type;
+	int num;
+	DataBase db;
 
+	//searches by common name
+	if (input == 'C') {
+		cout << "Enter the Common Name of the allergen: " << endl;
+		cin >> comName;
+		db.findComName(comName);
+	}
+	//searches by scientific name
+	else if (input == 'S') {
+		cout << "Enter the Scientific Name of the allergen: " << endl;
+		cin >> sciName;
+		db.findSciName(sciName);
+	}
+	//searches by type
+	else if (input == 'T') {
+		cout << "Enter the type of the allergen: " << endl;
+		cin >> type;
+		db.findType(type);
+	}
+	//searches by ncbi number
+	else if (input == 'N') {
+		cout << "Enter the NCBI Number of the allergen: " << endl;
+		cin >> num;
+		db.findNum(num);
+	}
+	else
+		exit(1);
 }
 
 void Menu::setAdd() {
 	string comName, sciName, type;
 	int num;
+	DataBase db;
 
 	cout << "Enter the common name of the allergen: " << endl;
 	cin >> comName;
@@ -78,6 +108,8 @@ void Menu::setAdd() {
 
 	cout << "Enter the NCBI number of the allergen: " << endl;
 	cin >> num;
+
+	db.addAl(comName, sciName, type, num);
 }
 
 /*

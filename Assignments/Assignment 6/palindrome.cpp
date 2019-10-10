@@ -32,5 +32,4 @@ int main() {
 	cout << "\n";
 	length = input.length();
 	isPalindrome(0, length - 1, input);
-	cin >> input;
 }

@@ -1,7 +1,7 @@
 #ifndef ALLERGY_H
 #define ALLERGY_H
 #include "includes.h"
-
+#include <string>
 
 
 class DataBase {
@@ -19,6 +19,7 @@ public:
 	~DataBase();
 
 	void addAl(string, string, string, int);
+	void alphaMe(Allergen*);
 	void delAl(int, string, string, int);
 	void findComName(string);
 	void findSciName(string);

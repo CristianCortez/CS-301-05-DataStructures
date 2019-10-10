@@ -146,8 +146,19 @@ void Menu::setAdd() {
 }
 
 /*
-void Menu::setSymptoms(){
+void Menu::getSymptoms(){
 	cout << "Symptoms List: "
 	<< "\n\t..."
+}
+*/
+
+/*
+void Menu::setSymptoms(int input){
+	if (input < 6){
+		cout << "You have a mild case of allergic reaction. " << endl;
+	}
+	else {
+		cout << " You have a severve case of allergic reaction. Please get medical help ASAP. " << endl;
+	}
 }
 */

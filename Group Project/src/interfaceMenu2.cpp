@@ -50,7 +50,7 @@ char Menu::getSearch() {
 	cout << "AllerCo Search Menu: "
 		<< "\n\tC - Search by common name "
 		<< "\n\tS - Search by science name "
-		<< "\n\tT - Search by type "
+		// << "\n\tT - Search by type "
 		<< "\n\tN - Search by NCBI number "
 		<< "\n\tQ - Exits the menu "
 		<< endl;
@@ -108,12 +108,13 @@ void Menu::setSearch(char input) {
 	}
 
 	//searches by type
+	/*
 	else if (input == 'T') {
 		cout << "Enter the type of the allergen: " << endl;
 		cin >> type;
 		db.findType(type);
 	}
-
+	*/
 	//searches by ncbi number
 	else if (input == 'N') {
 		cout << "Enter the NCBI Number of the allergen: " << endl;

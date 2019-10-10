@@ -1,3 +1,12 @@
+/*
+Authors:
+Paulo Chu za8684
+Cristian Cortez if2482
+Kevin Nguyen ta8783
+CS-301-05 Data Structures
+Program 6
+*/
+
 #include <string>
 #include <iostream>
 

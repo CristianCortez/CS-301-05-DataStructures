@@ -1,6 +1,6 @@
 #pragma once
-#ifndef INCLUDES2_H
-#define INCLUDES2_H
+#ifndef INCLUDES_H
+#define INCLUDES_H
 
 /* Please add all includes here */
 
@@ -11,7 +11,7 @@
 #include <fstream>
 
 /* HEADERS */
-#include "interfaceMenu2.h"
+#include "interfaceMenu.h"
 #include "allergy.h"
 
 using namespace std;

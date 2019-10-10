@@ -1,7 +1,7 @@
 #pragma once
-#ifndef INTERFACEMENU2_H
-#define INTERFACEMENU2_H
-#include "includes2.h"
+#ifndef INTERFACEMENU_H
+#define INTERFACEMENU_H
+#include "includes.h"
 
 class Menu {
 	public:
@@ -18,4 +18,4 @@ class Menu {
 void runDescription();
 void runMainMenu();
 
-#endif // !INTERFACEMENU2_H
+#endif // !INTERFACEMENU_H

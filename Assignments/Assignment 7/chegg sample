@@ -1,0 +1,166 @@
+
+
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#define MAX 100
+using namespace std;
+
+// Defines a class
+class BST
+{
+// To store number
+int data;
+// Pinter to left and right child
+BST *leftChild, *rightChild;
+public:
+
+// Function to create a new BST Node
+// returns the newly created node
+BST *createNode(int num)
+{
+// Creates a node
+BST *newNode = new BST;
+// Assigns the data
+newNode -> data = num;
+// Sets left and right child to null
+newNode -> leftChild = newNode -> rightChild = NULL;
+// Returns the new node
+return newNode;
+}// End of function
+
+// Stores in oder traversal of the BST in arr[]
+void assignSortedOrder(BST *root, int arr[], int &position)
+{
+// Checks if root node is not null then tree is not empty
+if (root != NULL)
+{
+// Recursively calls the function with left child
+assignSortedOrder(root -> leftChild, arr, position);
+
+// Assigns the data to parameter position
+// Increase the position by one
+arr[position++] = root -> data;
+
+// Recursively calls the function with right child
+assignSortedOrder(root -> rightChild, arr, position);
+}// End of if condition
+}// End of function
+
+// Function to insert a new BST node with given parameter data num
+BST* insertNode(BST* root, int num)
+{
+// Checks if the tree is empty then calls the function to create a node
+// and return a new Node
+if (root == NULL)
+return createNode(num);
+
+// Otherwise checks if parameter num is less than the current node data
+if (num < root -> data)
+// Recursively calls the function with left child
+root -> leftChild = insertNode(root -> leftChild, num);
+
+// Otherwise checks if parameter num is greater than the current node data
+else if (num > root -> data)
+// Recursively calls the function with right child
+root -> rightChild = insertNode(root -> rightChild, num);
+
+// returns the root node
+return root;
+}// End of function
+
+// Function to sort the tree in ascending order in order
+BST * sortTreeAscending(int arr[], int len)
+{
+// Creates a root node assigns NULL to it
+BST *root = NULL;
+
+// Calls the function to insert the array first index position data
+root = insertNode(root, arr[0]);
+
+// Loops till end of the array
+for (int c = 1; c < len; c++)
+// Calls the function to insert each element of the array
+insertNode(root, arr[c]);
+
+int c = 0;
+// Store in oder traversal of the BST in array
+assignSortedOrder(root, arr, c);
+// Returns the root node
+return root;
+}// End of function
+
+// Function for in order traversal
+void inOrder(BST* root)
+{
+// Checks if root is null then tree is empty
+if (root == NULL)
+return;
+
+// Recursively calls the function with left child
+inOrder(root->leftChild);
+
+// Displays current node data
+cout << root -> data << " ";
+
+// Recursively calls the function with right child
+inOrder(root -> rightChild);
+}// End of function
+};// End of class BST
+
+// Function to read file contents and stores it in array
+// Returns number of numbers read by reference &len
+void readRecord(int arr[], int &len)
+{
+// ifstream class object declared to read data from file
+ifstream fileRead;
+
+// Opens both the file for reading
+fileRead.open("BSTNum.txt");
+
+// Checks if the file unable to open for reading display's error message and stop
+if(!fileRead)
+{
+cout<<"\n ERROR: Unable to open the file for reading.";
+exit(0);
+}// End of if condition
+
+// Loops till end of the file
+while(!fileRead.eof())
+{
+// Read number
+fileRead>>arr[len++];
+}// End of while loop
+// Close the file
+fileRead.close();
+}// End of function
+
+// Driver Program to test functions
+int main()
+{
+// Creates a pointer of BST class
+BST *bst;
+// Declares an integer array of size MAX
+int arr[MAX];
+// To store number of numbers read from file
+int len = 0;
+
+// Calls the function read file
+readRecord(arr, len);
+
+// Calls the function to sort
+bst = bst->sortTreeAscending(arr, len);
+
+// Calls the function for in order traversal
+bst->inOrder(bst);
+
+return 0;
+}// End of main function
+
+Sample Output:
+
+3 10 12 23 47 56 61 88 89
+
+BSTNum.txt file contents
+
+12 10 56 89 3 47 88 61 23

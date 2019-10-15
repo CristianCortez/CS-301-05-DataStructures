@@ -139,7 +139,7 @@ fileRead.close();
 int main()
 {
 // Creates a pointer of BST class
-BST *bst;
+BST *bst = NULL;
 // Declares an integer array of size MAX
 int arr[MAX];
 // To store number of numbers read from file

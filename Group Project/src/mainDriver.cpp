@@ -1,7 +1,12 @@
 #include "includes.h"
 
 int main() {
-	runDescription();
+	//ifstream read_file;
+	ofstream write_file;
+	write_file.open("AllergenDataBase.txt");
+	write_file << "ALLERCO: Organizing The World's Allergies"
+		<< runDescription() << endl;
+
 	Menu opt;
 	char option, choice;
 
@@ -45,8 +50,8 @@ int main() {
 				opt.setSymptoms();
 				break;
 				*/
-		case 'Q':
-			//exit(1);
+		case 'Q': // option to quit the menu AND streams all allergens to the file.
+			
 			break;
 		default:
 			cout << ":: INVALID CHOICE ::" << endl;
@@ -57,6 +62,8 @@ int main() {
 		choice = putchar(toupper(choice));
 		cout << "\b" << "";
 	} while (choice != 'N');
+
+	write_file.close();
 
 	return 0;
 }

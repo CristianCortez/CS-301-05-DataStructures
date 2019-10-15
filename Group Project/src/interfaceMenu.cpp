@@ -1,14 +1,16 @@
 #include "includes.h"
 
-void runDescription() {
-	cout << "Here is the description: "
+string runDescription(void) {
+	stringstream prtStr;
+	prtStr << "Here is the description: "
 		<< "\n\tSearch the allergen database. "
 		<< "\n\tDelete an allergen from the database. "
 		<< "\n\tAdd an allergen to the database. "
 		// << "\n\tShow symptoms from the allergic reaction. "
 		// << "\n\tGo back feature to the menu. "
 		<< "\n\tExits the menu. "
-		<< endl;
+		<< "\n\t:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::" << endl;
+	return prtStr.str();
 }
 
 char Menu::getMenu() {

@@ -7,7 +7,7 @@ void runDescription() {
 		<< "\n\tAdd an allergen to the database. "
 		// << "\n\tShow symptoms from the allergic reaction. "
 		// << "\n\tGo back feature to the menu. "
-		<<"\n\tExits the menu. "
+		<< "\n\tExits the menu. "
 		<< endl;
 }
 
@@ -23,14 +23,14 @@ char Menu::getMenu() {
 		<< endl;
 	cin >> choice;
 
-	putchar(toupper(choice));
+	choice = putchar(toupper(choice));
 
 	return choice;
 }
 
 char Menu::getDelete() {
 	char choice;
-	
+
 	cout << "Allerco Delete Menu: "
 		<< "\n\tC - Deletes by common name "
 		<< "\n\tS - Deletes by science name "
@@ -39,7 +39,7 @@ char Menu::getDelete() {
 		<< endl;
 	cin >> choice;
 
-	putchar(toupper(choice));
+	choice = putchar(toupper(choice));
 
 	return choice;
 }
@@ -73,7 +73,7 @@ void Menu::setDelete(char input) {
 	}
 
 	// deletes by scientific name
-	else if (input == 'C') {
+	else if (input == 'S') {
 		cout << "Enter the scientific name of the allergen you wish to delete: " << endl;
 		cin >> sciName;
 	}
@@ -85,7 +85,7 @@ void Menu::setDelete(char input) {
 	}
 
 	else
-		exit(1);
+		return;
 }
 
 void Menu::setSearch(char input) {
@@ -123,7 +123,7 @@ void Menu::setSearch(char input) {
 	}
 
 	else
-		exit(1);
+		return;
 }
 
 void Menu::setAdd() {

@@ -3,6 +3,7 @@
 #include "includes.h"
 #include <string>
 
+using namespace std;
 
 class DataBase {
 private:

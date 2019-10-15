@@ -52,7 +52,7 @@ int main() {
 		cout << "Do you want to look at the menu again? (Y\N) " << endl;
 		cin >> choice;
 		choice = putchar(toupper(choice));
-	} while (choice != 'Q');
+	} while (choice != 'N');
 
 	return 0;
 }

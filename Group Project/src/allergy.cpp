@@ -12,7 +12,7 @@ DataBase::~DataBase() {
 	}
 }
 void DataBase::addAl(string comN, string sciN, string ty, int n) {
-	Allergen* newNode;
+	Allergen* newNode = new Allergen;
 	newNode->comName = comN;
 	newNode->sciName = sciN;
 	newNode->type = ty;
@@ -22,7 +22,7 @@ void DataBase::addAl(string comN, string sciN, string ty, int n) {
 }
 void DataBase::alphaMe(Allergen* newAl) {
 	Allergen* tmpHead = headPtr;
-	Allergen* previous = NULL;
+	Allergen* previous = tmpHead;
 	int i = 0;
 	if (headPtr == NULL || headPtr->sciName[0] > newAl->sciName[0]) {
 		newAl->next = headPtr;
@@ -52,7 +52,7 @@ void DataBase::alphaMe(Allergen* newAl) {
 	}
 }
 void DataBase::delAl(int x, string comN, string sciN, int n) {
-	Allergen* tmp = headPtr, *prev = NULL;
+	Allergen* tmp = headPtr, *prev = tmp;
 	if (tmp) {
 		while (tmp) {
 			if (tmp->comName == comN
@@ -135,7 +135,7 @@ void DataBase::print() {
 }
 int DataBase::getLength() {
 	Allergen* tmp = headPtr;
-	int len;
+	int len = 0;
 	if (tmp) {
 		while (tmp) {
 			len++;
@@ -147,25 +147,27 @@ int DataBase::getLength() {
 
 void DataBase::delComName(string s) {
 	Allergen* temp = headPtr;
-	Allergen* tempPrev = nullptr;
-	while (temp->comName != "s") {
-		tempPrev = temp;
-		temp = temp->next;
+	Allergen* tempPrev = temp;
+	if (temp) {
+		while (temp->comName != "s") {
+			tempPrev = temp;
+			temp = temp->next;
+		}
+		tempPrev->next = temp->next;
+		delete temp;
 	}
-	tempPrev->next = temp->next;
-	delete temp;
 }
-
-
 void DataBase::delSciName(string s) {
 	Allergen* temp = headPtr;
-	Allergen* tempPrev = nullptr;
-	while (temp->sciName != "s") {
-		tempPrev = temp;
-		temp = temp->next;
+	Allergen* tempPrev = temp;
+	if (temp) {
+		while (temp->sciName != "s") {
+			tempPrev = temp;
+			temp = temp->next;
+		}
+		tempPrev->next = temp->next;
+		delete temp;
 	}
-	tempPrev->next = temp->next;
-	delete temp;
 }
 
 void DataBase::delNum(int n) {

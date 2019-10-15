@@ -13,9 +13,10 @@ int main() {
 			do {
 				opt.setAdd();
 
-				cout << "Do you want to add another allergen? (Y\N) " << endl;
+				cout << "Do you want to add another allergen? (Y/N) " << endl;
 				cin >> choice;
 				choice = putchar(toupper(choice));
+				cout << "\b" << "";
 			} while (choice != 'N');
 			break;
 		case 'D':
@@ -23,9 +24,10 @@ int main() {
 				option = opt.getDelete();
 				opt.setDelete(option);
 
-				cout << "Do you want to delete another allergen? (Y\N) " << endl;
+				cout << "Do you want to delete another allergen? (Y/N) " << endl;
 				cin >> choice;
 				choice = putchar(toupper(choice));
+				cout << "\b" << "";
 			} while (choice != 'N');
 			break;
 		case 'S':
@@ -33,9 +35,10 @@ int main() {
 				option = opt.getSearch();
 				opt.setSearch(option);
 
-				cout << "Do you want to search another allergen? (Y\N) " << endl;
+				cout << "Do you want to search another allergen? (Y/N) " << endl;
 				cin >> choice;
 				choice = putchar(toupper(choice));
+				cout << "\b" << "";
 			} while (choice != 'N');
 			break;
 			/*case 'H':
@@ -49,9 +52,10 @@ int main() {
 			cout << ":: INVALID CHOICE ::" << endl;
 		}
 
-		cout << "Do you want to look at the menu again? (Y\N) " << endl;
+		cout << "Do you want to look at the menu again? (Y/N) " << endl;
 		cin >> choice;
 		choice = putchar(toupper(choice));
+		cout << "\b" << "";
 	} while (choice != 'N');
 
 	return 0;

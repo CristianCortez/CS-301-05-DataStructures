@@ -24,6 +24,7 @@ char Menu::getMenu() {
 	cin >> choice;
 
 	choice = putchar(toupper(choice));
+	cout << "\b" << "";
 
 	return choice;
 }
@@ -38,6 +39,7 @@ char Menu::getDelete() {
 		<< "\n\tQ - Exits the menu "
 		<< endl;
 	cin >> choice;
+	cout << "\b" << "";
 
 	choice = putchar(toupper(choice));
 
@@ -57,6 +59,7 @@ char Menu::getSearch() {
 	cin >> choice;
 
 	putchar(toupper(choice));
+	cout << "\b" << "";
 
 	return choice;
 }

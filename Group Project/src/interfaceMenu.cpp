@@ -150,7 +150,8 @@ void Menu::setAdd(DataBase* myDataBase) {
 
 	loop = true;
 	do {
-		cout << "Enter the scientific name of the allergen: " << endl;
+		cout << "Enter the scientific name of the allergen:
+		     << (First 3 Letters of your Common Name & Last 3 digits of your NCBI# \"Pea345\")" << endl;
 		cin >> sciName;
 		if (myDataBase->isSciName(sciName))
 			loop = false;

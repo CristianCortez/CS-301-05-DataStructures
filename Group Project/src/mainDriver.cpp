@@ -4,9 +4,10 @@ int main() {
 	//ifstream read_file;
 	ofstream write_file;
 	write_file.open("AllergenDataBase.txt");
-	write_file << "ALLERCO: Organizing The World's Allergies"
+	write_file << "ALLERCO: Organizing The World's Allergies\n" << endl
 		<< runDescription() << endl;
 
+	DataBase* allergen_db = NULL;
 	Menu opt;
 	char option, choice;
 
@@ -16,7 +17,7 @@ int main() {
 		switch (ch) {
 		case 'A':
 			do {
-				opt.setAdd();
+				opt.setAdd(allergen_db);
 
 				cout << "Do you want to add another allergen? (Y/N) " << endl;
 				cin >> choice;
@@ -63,6 +64,7 @@ int main() {
 		cout << "\b" << "";
 	} while (choice != 'N');
 
+	write_file << allergen_db->print();
 	write_file.close();
 
 	return 0;

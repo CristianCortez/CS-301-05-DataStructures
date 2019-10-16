@@ -30,7 +30,12 @@ public:
 	void delSciName(string);
 	void delNum(int);
 
-	void print();
+	bool isCommonName(string);
+	bool isSciName(string);
+	bool isType(string);
+	bool isNum(string);
+
+	string print();
 	int getLength();
 
 

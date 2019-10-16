@@ -1,6 +1,7 @@
 #ifndef INTERFACEMENU_H
 #define INTERFACEMENU_H
 #include "includes.h"
+#include "allergy.h"
 //#include <string>
 using namespace std;
 class Menu {
@@ -8,7 +9,7 @@ public:
 	char getMenu();
 	char getDelete();
 	char getSearch();
-	void setAdd();
+	void setAdd(DataBase*);
 	void setSearch(char ch);
 	void setDelete(char ch);
 	//void setSymptoms();

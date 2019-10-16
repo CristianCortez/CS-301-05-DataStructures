@@ -1,8 +1,9 @@
 #include "includes.h"
-
+#include "allergy.h"
+#include "interfaceMenu.h"
 string runDescription(void) {
 	stringstream prtStr;
-	prtStr << "Here is the description: "
+	prtStr << "Description: How to use this program: "
 		<< "\n\tSearch the allergen database. "
 		<< "\n\tDelete an allergen from the database. "
 		<< "\n\tAdd an allergen to the database. "
@@ -131,24 +132,54 @@ void Menu::setSearch(char input) {
 		return;
 }
 
-void Menu::setAdd() {
-	string comName, sciName, type;
-	int num;
-	DataBase db;
+void Menu::setAdd(DataBase* myDataBase) {
+	string comName, sciName, type, num;
+	int n;
+	bool loop = true;
+	
+	do {
+		cout << "Enter the common name of the allergen: " << endl;
+		cin >> comName;
+		if (myDataBase->isCommonName(comName)) {
+			loop = false;
+		}
+		else {
+			cout << "\n::INVALID ENTRY::" << endl;
+		}
+	} while (loop);
 
-	cout << "Enter the common name of the allergen: " << endl;
-	cin >> comName;
+	loop = true;
+	do {
+		cout << "Enter the scientific name of the allergen: " << endl;
+		cin >> sciName;
+		if (myDataBase->isSciName(sciName))
+			loop = false;
+		else
+			cout << "\n::INVALID ENTRY::" << endl;
+	} while (loop);
 
-	cout << "Enter the scientific name of the allergen: " << endl;
-	cin >> sciName;
+	loop = true;
+	do {
+		cout << "Enter the type of the allergen: " << endl;
+		cin >> type;
+		if (myDataBase->isType(type))
+			loop = false;
+		else 
+			cout << "\n::INVALID ENTRY::" << endl;
+	} while (loop);
 
-	cout << "Enter the type of the allergen: " << endl;
-	cin >> type;
-
-	cout << "Enter the NCBI number of the allergen: " << endl;
-	cin >> num;
-
-	db.addAl(comName, sciName, type, num);
+	loop = true;
+	do {
+		cout << "Enter the NCBI number of the allergen: " << endl;
+		cin >> num;
+		if (myDataBase->isNum(num)) {
+			n = stoi(num);
+			loop = false;
+		}
+		else
+			cout << "\n::INVALID ENTRY::" << endl;
+	} while (loop);
+	myDataBase->addAl(comName, sciName, type, n);
 }
 
 /*

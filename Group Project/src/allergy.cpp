@@ -21,14 +21,16 @@ void DataBase::addAl(string comN, string sciN, string ty, int n) {
 	alphaMe(newNode);
 }
 void DataBase::alphaMe(Allergen* newAl) {
-	Allergen* tmpHead = headPtr;
+	Allergen* tmpHead = NULL;
 	Allergen* previous = tmpHead;
+	//tmpHead = headPtr;
 	int i = 0;
 	if (headPtr == NULL || headPtr->sciName[0] > newAl->sciName[0]) {
 		newAl->next = headPtr;
 		headPtr = newAl;
 	}
 	else {
+		tmpHead = headPtr;
 		do {
 			previous = tmpHead;
 			if (tmpHead->sciName[i] == newAl->sciName[i])
@@ -123,15 +125,54 @@ void DataBase::findNum(int n) {
 			<< "Number: \t\t" << search->num << endl;
 	}
 }
-void DataBase::print() {
+bool DataBase::isCommonName(string str) {
+	int j = -1;
+	for (size_t i = 0; i < str.length(); i++) {
+		j++;
+		if (str[j] >= 48 && str[j] <= 57)
+			return false;
+	}
+	return true;
+}
+bool DataBase::isSciName(string str) {
+	int j = -1;
+	for (size_t i = 0; i < str.length(); i++) {
+		j++;
+		if (str[j] >= 48 && str[j] <= 57)
+			return false;
+	}
+	return true;
+}
+bool DataBase::isType(string str) {
+	if (str[0] >= 97 && str[0] <= 122)
+		str[0] -= 32;
+	else
+		str[0] += 32;
+	if (str == "Food" || str == "Plant" || str == "Animal")
+		return true;
+	else
+		return false;
+}
+bool DataBase::isNum(string str) {
+	int j = -1;
+	for (size_t i = 0; i < str.length(); i++) {
+		j++;
+		if (str[j] < 48 && str[j] > 57)
+			return false;
+	}
+	return true;
+}
+string DataBase::print() {
+	stringstream prtStr;
 	Allergen* tmp = headPtr;
 	while (tmp) {
-		cout << "Common Name: \t\t" << tmp->comName
-			<< "Scientific Name: \t\t" << tmp->sciName
-			<< "Type: \t\t" << tmp->type
-			<< "Number: \t\t" << tmp->num << endl;
+		prtStr << "\nCommon Name: \t\t" << tmp->comName
+			<< "\nScientific Name: \t\t" << tmp->sciName
+			<< "\nType: \t\t" << tmp->type
+			<< "\nNumber: \t\t" << tmp->num << endl;
 		tmp = tmp->next;
 	}
+	return prtStr.str();
 }
 int DataBase::getLength() {
 	Allergen* tmp = headPtr;

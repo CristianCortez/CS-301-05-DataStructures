@@ -20,13 +20,12 @@ void DataBase::addAl(string comN, string sciN, string ty, int n) {
 	newNode->next = NULL;
 	alphaMe(newNode);
 }
-
 void DataBase::alphaMe(Allergen* newAl) {
-	Allergen* tmpHead = NULL;
+	Allergen* tmpHead = nullptr;
 	Allergen* previous = tmpHead;
 	//tmpHead = headPtr;
 	int i = 0;
-	if (headPtr == NULL || headPtr->sciName[0] > newAl->sciName[0]) {
+	if (headPtr == nullptr || headPtr->sciName[0] > newAl->sciName[0]) {
 		newAl->next = headPtr;
 		headPtr = newAl;
 	}
@@ -54,8 +53,8 @@ void DataBase::alphaMe(Allergen* newAl) {
 		}
 	}
 }
-void DataBase::delAl(int x, string comN, string sciN, int n) {
-	Allergen* tmp = headPtr, * prev = tmp;
+void DataBase::delAl(string comN, string sciN, int n) {
+	Allergen* tmp = headPtr, *prev = tmp;
 	if (tmp) {
 		while (tmp) {
 			if (tmp->comName == comN
@@ -147,7 +146,8 @@ bool DataBase::isSciName(string str) {
 bool DataBase::isType(string str) {
 	if (str[0] >= 97 && str[0] <= 122)
 		str[0] -= 32;
-	
+	//else
+		//str[0] += 32;
 	if (str == "Food" || str == "Plant" || str == "Animal")
 		return true;
 	else
@@ -167,9 +167,9 @@ string DataBase::print() {
 	Allergen* tmp = headPtr;
 	while (tmp) {
 		prtStr << "\nCommon Name: \t\t" << tmp->comName
-			<< "\nScientific Name: \t" << tmp->sciName
-			<< "\nType: \t\t\t\t" << tmp->type
-			<< "\nNumber: \t\t\t" << tmp->num << endl;
+			<< "\nScientific Name: \t\t" << tmp->sciName
+			<< "\nType: \t\t" << tmp->type
+			<< "\nNumber: \t\t" << tmp->num << endl;
 		tmp = tmp->next;
 	}
 	return prtStr.str();

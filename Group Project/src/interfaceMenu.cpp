@@ -67,27 +67,29 @@ char Menu::getSearch() {
 	return choice;
 }
 
-void Menu::setDelete(char input) {
+void Menu::setDelete(DataBase* db, char input) {
 	string comName, sciName;
 	int num;
-	DataBase db;
 
 	//deletes by common name
 	if (input == 'C') {
 		cout << "Enter the common name of the allergen you wish to delete: " << endl;
 		cin >> comName;
+		(db)->delAl(comName, "", 0);
 	}
 
 	// deletes by scientific name
 	else if (input == 'S') {
 		cout << "Enter the scientific name of the allergen you wish to delete: " << endl;
 		cin >> sciName;
+		db->delAl("", sciName, 0);
 	}
 
 	//deletes by ncbi number
 	else if (input == 'N') {
 		cout << "Enter the NCBI number of the allergen you wish to delete: " << endl;
 		cin >> num;
+		db->delAl("", "", num);
 	}
 
 	else
@@ -136,11 +138,11 @@ void Menu::setAdd(DataBase* myDataBase) {
 	string comName, sciName, type, num;
 	int n;
 	bool loop = true;
-
+	
 	do {
 		cout << "Enter the common name of the allergen: " << endl;
 		cin >> comName;
-		if (myDataBase->isCommonName(comName)) {
+		if ((myDataBase)->isCommonName(comName)) {
 			loop = false;
 		}
 		else {
@@ -152,7 +154,7 @@ void Menu::setAdd(DataBase* myDataBase) {
 	do {
 		cout << "Enter the scientific name of the allergen: " << endl;
 		cin >> sciName;
-		if (myDataBase->isSciName(sciName))
+		if ((myDataBase)->isSciName(sciName))
 			loop = false;
 		else
 			cout << "\n::INVALID ENTRY::" << endl;
@@ -162,7 +164,7 @@ void Menu::setAdd(DataBase* myDataBase) {
 	do {
 		cout << "Enter the type of the allergen: " << endl;
 		cin >> type;
-		if (myDataBase->isType(type))
+		if ((myDataBase)->isType(type))
 			loop = false;
 		else
 			cout << "\n::INVALID ENTRY::" << endl;
@@ -172,14 +174,15 @@ void Menu::setAdd(DataBase* myDataBase) {
 	do {
 		cout << "Enter the NCBI number of the allergen: " << endl;
 		cin >> num;
-		if (myDataBase->isNum(num)) {
+		if ((myDataBase)->isNum(num)) {
 			n = stoi(num);
 			loop = false;
 		}
 		else
 			cout << "\n::INVALID ENTRY::" << endl;
 	} while (loop);
-	myDataBase->addAl(comName, sciName, type, n);
+
+	((myDataBase)->addAl(comName, sciName, type, n));
 }
 
 /*

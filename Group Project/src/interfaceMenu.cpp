@@ -136,7 +136,7 @@ void Menu::setAdd(DataBase* myDataBase) {
 	string comName, sciName, type, num;
 	int n;
 	bool loop = true;
-	
+
 	do {
 		cout << "Enter the common name of the allergen: " << endl;
 		cin >> comName;
@@ -164,7 +164,7 @@ void Menu::setAdd(DataBase* myDataBase) {
 		cin >> type;
 		if (myDataBase->isType(type))
 			loop = false;
-		else 
+		else
 			cout << "\n::INVALID ENTRY::" << endl;
 	} while (loop);
 

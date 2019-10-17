@@ -7,3 +7,8 @@ Description: How to use this program:
 	Exits the menu. 
 	:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::
 
+
+Common Name: 		Potato
+Scientific Name: 	Potato
+Type: 				Plant
+Number: 			1231

@@ -7,7 +7,7 @@ int main() {
 	write_file << "ALLERCO: Organizing The World's Allergies\n" << endl
 		<< runDescription() << endl;
 
-	DataBase* allergen_db = NULL;
+	DataBase* allergen_db = new DataBase;
 	Menu opt;
 	char option, choice;
 
@@ -52,7 +52,7 @@ int main() {
 				break;
 				*/
 		case 'Q': // option to quit the menu AND streams all allergens to the file.
-			
+
 			break;
 		default:
 			cout << ":: INVALID CHOICE ::" << endl;

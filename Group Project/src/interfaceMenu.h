@@ -11,7 +11,7 @@ public:
 	char getSearch();
 	void setAdd(DataBase*);
 	void setSearch(char ch);
-	void setDelete(char ch);
+	void setDelete(DataBase* ,char ch);
 	//void setSymptoms();
 
 };

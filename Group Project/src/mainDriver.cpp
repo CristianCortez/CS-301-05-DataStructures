@@ -28,7 +28,7 @@ int main() {
 		case 'D':
 			do {
 				option = opt.getDelete();
-				opt.setDelete(option);
+				opt.setDelete(allergen_db, option);
 
 				cout << "Do you want to delete another allergen? (Y/N) " << endl;
 				cin >> choice;
@@ -37,6 +37,7 @@ int main() {
 			} while (choice != 'N');
 			break;
 		case 'S':
+
 			do {
 				option = opt.getSearch();
 				opt.setSearch(option);

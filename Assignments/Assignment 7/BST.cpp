@@ -1,60 +1,43 @@
+/* Author(s): Cristian Cortez if2482
+			Paulo Chu za8684
+			Kevin Nguyen ta8783
+ * Class: CS 301 - 05 (3675) Data Structures and Algorithms
+ * Assignment: Number 7
+ * Date (Submitted): 10/27/2019
+*/
 #include "BST.h"
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-
-using namespace std;
-
-Tree* Tree::newNode(int num)
-{
-	Tree *newNode = new Tree;
+BSTree* BSTree::createNode(int num) {
+	treePtr newNode = new BSTree;
 	newNode->data = num;
-	newNode->leftChild = newNode->rightChild = nullptr;
+	newNode->left = newNode->right = NULL;
 	return newNode;
 }
 
-void Tree::sortOrder(Tree *root, int arr[], int &location)
-{
-	if (root != nullptr)
-	{
-		sortOrder(root->leftChild, arr, location);
-		arr[location++] = root->data;
-		sortOrder(root->rightChild, arr, location);
+BSTree* BSTree::insertInOrder(treePtr myTree, int num) {
+	if (!myTree)
+		return createNode(num);
+	// Number smaller than root go left:
+	if (num < myTree->data)
+		myTree->left = insertInOrder(myTree->left, num);
+	// Number larger than root go right:
+	else if (num > myTree->data)
+		myTree->right = insertInOrder(myTree->right, num);
+
+	return myTree;
+}
+
+BSTree* BSTree::buildTreeInOrder(int arr[], int length) {
+	treePtr root = NULL;
+	root = insertInOrder(root, arr[0]);
+	for (int i = 1; i < length; i++)
+		insertInOrder(root, arr[i]);
+	return root;
+}
+
+void BSTree::printTree(treePtr myTree) {
+	if (myTree) {
+		printTree(myTree->left);
+		cout << myTree->data << " ";
+		printTree(myTree->right);
 	}
 }
-
-Tree* Tree::insertNode(Tree* root, int num)
-{
-	if (root == nullptr)
-		return newNode(num);
-
-	if (num < root->data)
-		root->leftChild = insertNode(root->leftChild, num);
-
-	else if (num > root->data)
-		root->rightChild = insertNode(root->rightChild, num);
-
-	return root;
-}
-
-Tree* Tree::sortAscending(int arr[], int length)
-{
-	Tree *root = nullptr;
-	int l = 0;
-
-	root = insertNode(root, arr[0]);
-	for (int i = 1; i < length; i++)
-		insertNode(root, arr[i]);
-	sortOrder(root, arr, l);
-	return root;
-}
-
-void Tree::inOrder(Tree* root)
-{
-	if (root == nullptr)
-		return;
-	inOrder(root->leftChild);
-	cout << root->data << " ";
-	inOrder(root->rightChild);
-}
-

@@ -1,0 +1,301 @@
+# Hello World program in Python
+
+# 1. Python is an interpreted language. The statements are executed one after another.
+# The below code gives an error as b is not defined. b is defined after printing b. But, python does not know because the line b is interpreted after print statement.
+
+a = 10;
+print a;
+print b;
+b = 20;
+
+Spython main.py 10 Traceback (most recent call last): File main.py, line 8, in <module> print b; NameError: name b is not
+
+To solve that error, replace the code
+
+a = 10;
+print a;
+b = 20;
+print b;
+
+# Hello World program in Python
+
+# 1. Python is an interpreted language. The statements are executed one after another.
+# The below code gives an error as b is not defined. b is defined after printing b. But, python does not know because the line b is interpreted after print statement.
+
+a = 10;
+print a;
+#print b #Gives an error
+b = 20;
+print b;
+
+
+# 2. Boolean expressions will give the result true or false.
+print(b > a) #b is greater than a, so it gives result as True
+print(b > 15 >= 2); #In Python expression is evaluated only once. The result of one expression is not given. b>15 and 15>=2 is evaluated. So, 20>15 is true and 15>=2 and it is true. It is not evaluated as b>15 is True and True>=2
+#Evaluating expression either in left to right, right to left. Please refer to associativity rules.
+
+print(b>15 and a<=10 or a<2) #It is evaluated from left to right. b>15 and a<=10 is true and now True or a<2 is evaluated True or False is True incase of OR operator.
+
+#3. Short Circuit Evaluation
+print(a>50 and (++b)==21)
+
+# We know that and operator requires all the expressions should be true. If the first expression is evaluated to false, and operator will not check for other expressions at all.
+
+print(a>5 or (b+1)==20)
+
+#Now in OR. a>5 condition is true, so now it will not check another expression (b+1)==20 at all. Because OR requires atleast any expression to be true.
+
+#4. Numeric types. Python supports 4 numeric types. int, float, long and complex. You don't need to specify the datatype while using varible. Based on values stored in it, the datatype determined automatically. However, you can convert the value to specific type.
+
+a = 1;
+
+print(type(a)) #type is int
+
+a=1.50;
+
+print(type(a)) #type is float
+
+a = 'hello'
+
+print(type(a)) #type is string
+
+a = complex(5,10)
+
+print(type(a)) #type is complex
+
+a = 1555L;
+
+print(type(a)) #type is long
+
+#You can convert the value to specific type using functions
+
+print(int(10.5))
+
+print(float(10))
+
+print(long(10.5))
+
+
+# Strings
+val = "Hello Python!"
+
+print(val)
+
+#Selecting substring
+print(val[0:5]) #0 inclusive and 5 exclusive so it will select string from 0 to 4.
+
+#Updating the string
+val = val + "Program"
+
+print(val) #Prints Hello Python!Program
+
+
+#Repetition
+print(val)*2 #Prints val two times
+
+#Selecting value
+print(val[4]) #Selects 4th character
+
+
+#6. Python does not support arrays by default. You need to import packages from various libraries like array, numpy to use array.
+
+#7. Lists. Python supports lists which like an array. But, list can hold any type of values and can contain sublists.
+list1 = [10,20,30]
+
+print(list1)
+
+#Printing individual element
+print(list1[0])
+
+#Printing 0 to 1. 2 exclusive
+print(list1[0:2])
+
+#Adding new elements
+list1 = list1 + [40,50]
+
+print(list1)
+
+#Finding the length of no of elements in a list
+print(len(list1))
+
+#Select from last. Selects second last number
+print(list1[-2])
+
+#Removing element in a list. Deletes last element
+list1.pop()
+
+print(list1)
+
+#Modifying value of a list
+list1[0] = 90
+
+print(list1)
+
+#Check in google for more list operations
+
+#8. Tuples same like lists. But, tuples cannot be modified and it is accessed using []
+
+#Creating empty tuple
+tpl = ()
+
+print(tpl)
+
+tpl = ('hi','hello')
+
+print(tpl)
+
+#Trying to change value of a tuple results an error
+# tpl[0] = 'python' #will give an error
+
+#Creating new tuple
+tpl1 = ('Python',)
+
+tpl2 = tpl + tpl1
+
+print(tpl2)
+
+#Deleting a tuple
+del tpl
+
+# print(tpl) #error
+
+#Accessing tuple value
+print(tpl2[0])
+
+
+#9.Slicing in Python Displaying values in python lists and tuples
+
+slc = [1,2,3,4,5,6,7,8]
+
+print(slc[0:7]) #0 to 6 elements
+
+print(slc[1:9:2]) #Displays elements from 1st index to 6. By default, it increment by 1, if you give 3rd parameter it increments by 2 (Specified). So, you will get output as 2,4,6,8
+
+print(slc[:3]) #Selects first 3 elements
+
+print(slc[3:]) #Selects elements after first 3 elements
+
+print(slc[-4]) #Selects last 3rd element. 4 is exclusive
+
+#10. Index range check. If you try to access the list element which is not there in in the index, you will get an error. You can find number of elements in a list or tuple to avoid this. You can use len(list) to find no of elements in it or you can iterate the list over number of its elements using range function.
+print(len(slc))
+
+for i in range(0,len(slc)):
+print(slc[i])
+
+
+#11. Dictionary is a key value pair. It is created using dict()
+
+dict1 = dict()
+
+print(dict1)
+
+dict1 = {'android' : 'phone', 'number' : 'integer'}
+
+print(dict1['android'])
+
+#Dict is a key value pair. Each key has a value associated to it.
+
+#View all the keys
+print(dict1.keys())
+
+#Updating value
+
+dict1['android'] = 'Mobile OS'
+
+
+print(dict1)
+
+#Deleting a element
+del dict1['android']
+
+print(dict1)
+
+
+#Adding new element to dict
+
+dict1['hello'] = 'hi'
+
+print(dict1)
+
+
+#12. If conditional statement. If condition is true it evalutes one set of statements or another set
+a = 10
+b = 5
+if a>b:
+print("a is greatest")
+else:
+print("b is greatest")
+  
+#13. Switch is not supported in python
+
+#14. For loop is a looping construct that executes again and again until a condition is true.
+#Below program to print even numbers from 1 to 10.
+#Range iterates element one by one from 1 to 10
+
+for i in range(1,11): #11 exclusive
+if i % 2 ==0:
+print(i)
+
+#15. While loop. Checks for condition and evalutes the rest.
+count = 1
+while count<=10:
+if count % 2 ==0:
+print(count)
+count = count + 1
+
+#16. Indentation. Python identifies blocks of code based on its indentations. The while loop specified above clearly shows how identation works.
+
+#17.Type binding means what type of data associated with variable at compile or run time. Python follows dynamic type binding. You don't need to declare the type of value. Based on the value stored, python automatically interprets.
+
+a = 1;
+
+print(type(a)) #type is int
+
+a=1.50;
+
+print(type(a)) #type is float
+
+a = 'hello'
+
+print(type(a)) #type is string
+
+a = complex(5,10)
+
+print(type(a)) #type is complex
+
+a = 1555L;
+
+print(type(a)) #type is long
+
+
+#18. Type checking. You can check the type of variable using type function
+
+a = 1555L;
+
+print(type(a)) #type is long
+
+
+#19. Functions is defined using def in python.
+
+def add(a,b):
+return a+b
+
+print(add(10,20))
+
+#20. Taking input from the user. You can use input or raw_input function
+
+inputVal = input("Enter your age : ")
+
+print(inputVal)
+
+B.
+
+Python is very easy language to learn
+
+Coding is easy
+
+It uses indentation for identifying blocks of code
+
+Interpreted language
+

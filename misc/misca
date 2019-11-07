@@ -1,0 +1,37 @@
+1).Answer:Employing a single bit in contrasting a overall byte will sustain the memory hence the boolean values preserves as a single bit which were much space efficient.
+
+.............................................................................................................................................................................
+
+2).Answer:The main function of garbage collector is to gather and automatic deletion of already allocated and unused memory which was accomplished with a method named gc( ) in java but not C++. .
+
+Automatic deletion permits a programmer not bothering regrding the memory management , reducing the development duration and prices.
+
+potential perfomance problems occurs from non deterministic manipulation of garbage collections like games.
+
+Explicit management presents to produce faults in memeory management.
+
+.....................................................................................................................................................................................
+
+3).Answer:
+
+Benefits:1. needed through the ISO C standard.
+
+2.Avoids few cycles during runtime, mainly when subexpressions are moderately complicated.
+
+3. && and || to prohibit the execution errors.
+
+Reliability: If the concurrency was utilized,short circuit evaluation contain safety problems.so it is tough to detect the bugs. it is not atomic which was the major drawback.
+
+............................................................................................................................................................................
+
+4) java and c++ selected to rectify the dangling else issue i.e else keyword all the time linked through the adjacent preceeding when keyword which is not generating a sysntax error.
+
+python uses identation which bounds the group of code.Every line in code should be indented at similar stage.The opinion of creating python employing identation is depending upon trust which grouping code in such a way that which was much classic and subscribes the ease of reading.It often assist to eliminate the dangling_else issues.
+
+.....................................................................................................................................................................
+
+name equialence structural type
+
+Two types are similar when they contain the similar name. |Names of the type are omited and type of elements are contrasted to equality.
+Selected for modula2 and mirinda..etc|	Unique in programming distributed systems.
+Type definitions must be equal.	|Type definitions need not be equal.

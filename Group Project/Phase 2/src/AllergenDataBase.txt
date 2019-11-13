@@ -1,0 +1,14 @@
+ALLERCO: Organizing The World's Allergies
+
+Description: How to use this program: 
+	Search the allergen database. 
+	Delete an allergen from the database. 
+	Add an allergen to the database. 
+	Exits the menu. 
+	:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::
+
+
+Common Name: 		eggs
+Scientific Name: 		ovul
+Type: 		animal
+Number: 		1245

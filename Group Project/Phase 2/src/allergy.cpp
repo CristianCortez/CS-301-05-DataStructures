@@ -54,29 +54,18 @@ void DataBase::alphaMe(Allergen* newAl) {
 	}
 }
 void DataBase::delAl(string comN, string sciN, int n) {
-	Allergen* tmp = headPtr, * prev = tmp;
-	bool delHead = false;
+	Allergen* tmp = headPtr, *prev = tmp;
 	if (tmp) {
 		while (tmp) {
-
 			if (tmp->comName == comN
 				|| tmp->sciName == sciN
 				|| tmp->num == n) {
-				if (tmp == headPtr) {
-					delHead = true;
-				}
 				prev->next = tmp->next;
 				tmp->next = NULL;
 				delete tmp;
-				tmp = nullptr;
-				if (delHead) {
-					headPtr = nullptr;
-				}
 			}
-			else {
-				prev = tmp;
-				tmp = tmp->next;
-			}
+			prev = tmp;
+			tmp = tmp->next;
 		}
 	}
 	tmp = prev = NULL;
@@ -175,16 +164,13 @@ bool DataBase::isNum(string str) {
 }
 string DataBase::print() {
 	stringstream prtStr;
-	prtStr.str("");
 	Allergen* tmp = headPtr;
-	if (tmp) {
-		while (tmp) {
-			prtStr << "\nCommon Name: \t\t" << tmp->comName
-				<< "\nScientific Name: \t\t" << tmp->sciName
-				<< "\nType: \t\t" << tmp->type
-				<< "\nNumber: \t\t" << tmp->num << endl;
-			tmp = tmp->next;
-		}
+	while (tmp) {
+		prtStr << "\nCommon Name: \t\t" << tmp->comName
+			<< "\nScientific Name: \t\t" << tmp->sciName
+			<< "\nType: \t\t" << tmp->type
+			<< "\nNumber: \t\t" << tmp->num << endl;
+		tmp = tmp->next;
 	}
 	return prtStr.str();
 }
@@ -235,18 +221,3 @@ void DataBase::delNum(int n) {
 	tempPrev->next = temp->next;
 	delete temp;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// c b a

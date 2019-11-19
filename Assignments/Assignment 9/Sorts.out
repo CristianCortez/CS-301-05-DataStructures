@@ -1,0 +1,32 @@
+f1i231
+Initial values
+Results from InsertionSort: 
+Time taken by function: 688405 microseconds
+
+Results from SelectionSort: 
+Time taken by function: 121865 microseconds
+
+Results from BubbleSort:
+Time taken by function: 804390 microseconds
+
+Results from ShortBubble:
+Time taken by function: 824291 microseconds
+
+Results from QuickSort: 
+Time taken by function: 7111 microseconds
+
+Results from QuickSort2: 
+Time taken by function: 2158 microseconds
+
+Results from MergeSort: 
+Time taken by function: 12956 microseconds
+
+Results from HeapSort: 
+Time taken by function: 7111 microseconds
+
+
+Initial Values: 
+Results from InsertionSort: 
+Time taken by function: 781970 microseconds
+
+Input not recognized.

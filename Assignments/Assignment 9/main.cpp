@@ -3,6 +3,9 @@
 // Input are sorting algorithm names plus Refresh for resetting the
 //   values to be sorted to their previous values and Reinitialize for
 //   creating a new set of values.
+#include <algorithm> 
+#include <chrono>
+
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
@@ -18,6 +21,7 @@ const int SIZE = 10000;
 #include "HeapSort.h"
 
 using namespace std;
+using namespace std::chrono;
 typedef int ItemType;
 
 // SIZE should be a multiple of 10.
@@ -59,65 +63,105 @@ int main()
 	InitValues(values);
 	CopyValues(values, copyValues);
 	outFile << "Initial values" << endl;
-	Print(outFile, values);
+	//Print(outFile, values);
 
 	numCommands = 0;
 	while (command != "Quit")
 	{
 		if (command == "SelectionSort")
 		{
+			auto start = high_resolution_clock::now();					
 			SelectionSort(values, SIZE - 1);
-			outFile << "Results from SelectionSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from SelectionSort: \n"
+				<< "Time taken by function: "
+					<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "BubbleSort")
 		{
+			auto start = high_resolution_clock::now();
 			BubbleSort(values, SIZE - 1);
-			outFile << "Results from BubbleSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from BubbleSort:\n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "ShortBubble")
 		{
+			auto start = high_resolution_clock::now();
 			ShortBubble(values, SIZE - 1);
-			outFile << "Results from ShortBubble: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from ShortBubble:\n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "MergeSort")
 		{
+			auto start = high_resolution_clock::now();
 			MergeSort(values, 0, SIZE - 1);
-			outFile << "Results from MergeSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from MergeSort: \n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "QuickSort")
 		{
+			auto start = high_resolution_clock::now();
 			QuickSort(values, 0, SIZE - 1);
-			outFile << "Results from QuickSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from QuickSort: \n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "QuickSort2")
 		{
+			auto start = high_resolution_clock::now();
 			QuickSort2(values, 0, SIZE - 1);
-			outFile << "Results from QuickSort2: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from QuickSort2: \n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "InsertionSort")
 		{
+			auto start = high_resolution_clock::now();
 			InsertionSort(values, SIZE - 1);
-			outFile << "Results from InsertionSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from InsertionSort: \n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "HeapSort")
 		{
+			auto start = high_resolution_clock::now();
 			HeapSort(values, SIZE);
-			outFile << "Results from HeapSort: " << endl;
-			Print(outFile, values);
+			auto stop = high_resolution_clock::now();
+			auto duration = duration_cast<microseconds>(stop - start);
+			outFile << "Results from HeapSort: \n"
+				<< "Time taken by function: "
+				<< duration.count() << " microseconds" << endl;
+			//Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "Refresh")
@@ -127,7 +171,7 @@ int main()
 			InitValues(values);
 			CopyValues(values, copyValues);
 			outFile << endl << "Initial Values: " << endl;
-			Print(outFile, values);
+			//Print(outFile, values);
 		}
 		else
 			outFile << "Input not recognized." << endl;

@@ -63,7 +63,7 @@ int main()
 	InitValues(values);
 	CopyValues(values, copyValues);
 	outFile << "Initial values" << endl;
-	//Print(outFile, values);
+	Print(outFile, values);
 
 	numCommands = 0;
 	while (command != "Quit")
@@ -77,7 +77,7 @@ int main()
 			outFile << "Results from SelectionSort: \n"
 				<< "Time taken by function: "
 					<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "BubbleSort")
@@ -89,7 +89,7 @@ int main()
 			outFile << "Results from BubbleSort:\n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "ShortBubble")
@@ -101,7 +101,7 @@ int main()
 			outFile << "Results from ShortBubble:\n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "MergeSort")
@@ -113,7 +113,7 @@ int main()
 			outFile << "Results from MergeSort: \n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "QuickSort")
@@ -125,7 +125,7 @@ int main()
 			outFile << "Results from QuickSort: \n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "QuickSort2")
@@ -137,7 +137,7 @@ int main()
 			outFile << "Results from QuickSort2: \n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "InsertionSort")
@@ -149,7 +149,7 @@ int main()
 			outFile << "Results from InsertionSort: \n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "HeapSort")
@@ -161,7 +161,7 @@ int main()
 			outFile << "Results from HeapSort: \n"
 				<< "Time taken by function: "
 				<< duration.count() << " microseconds" << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 			outFile << endl;
 		}
 		else if (command == "Refresh")
@@ -171,7 +171,7 @@ int main()
 			InitValues(values);
 			CopyValues(values, copyValues);
 			outFile << endl << "Initial Values: " << endl;
-			//Print(outFile, values);
+			Print(outFile, values);
 		}
 		else
 			outFile << "Input not recognized." << endl;

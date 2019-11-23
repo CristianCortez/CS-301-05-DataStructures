@@ -2001,7 +2001,7 @@ Initial values
 353, 465, 45, 306, 126, 557, 296, 546, 880, 796
 
 Results from InsertionSort: 
-Time taken by function: 667300 microseconds
+Time taken by function: 539141 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -4004,7 +4004,7 @@ Time taken by function: 667300 microseconds
 
 
 Results from SelectionSort: 
-Time taken by function: 116176 microseconds
+Time taken by function: 116476 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -6007,7 +6007,7 @@ Time taken by function: 116176 microseconds
 
 
 Results from BubbleSort:
-Time taken by function: 847887 microseconds
+Time taken by function: 710010 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -8010,7 +8010,7 @@ Time taken by function: 847887 microseconds
 
 
 Results from ShortBubble:
-Time taken by function: 774524 microseconds
+Time taken by function: 713172 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -10013,7 +10013,7 @@ Time taken by function: 774524 microseconds
 
 
 Results from QuickSort: 
-Time taken by function: 2382 microseconds
+Time taken by function: 2001 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -12016,7 +12016,7 @@ Time taken by function: 2382 microseconds
 
 
 Results from QuickSort2: 
-Time taken by function: 2072 microseconds
+Time taken by function: 1912 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -14019,7 +14019,7 @@ Time taken by function: 2072 microseconds
 
 
 Results from MergeSort: 
-Time taken by function: 13451 microseconds
+Time taken by function: 9415 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -16022,7 +16022,7 @@ Time taken by function: 13451 microseconds
 
 
 Results from HeapSort: 
-Time taken by function: 6923 microseconds
+Time taken by function: 5743 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
@@ -20027,7 +20027,7 @@ Initial Values:
 254, 18, 424, 986, 953, 360, 641, 669, 533, 51
 
 Results from InsertionSort: 
-Time taken by function: 630925 microseconds
+Time taken by function: 553854 microseconds
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 0, 0, 0, 0, 0, 0, 1, 1, 1, 1

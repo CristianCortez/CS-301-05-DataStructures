@@ -1,0 +1,53 @@
+1.
+
+(define (binomial N k)
+
+(if (= k 0)
+
+1
+
+(if (= k N)
+
+1
+
+(+ (binomial (- N 1) k) (binomial (- N 1) (- k 1))))))
+
+Output:
+
+>(define (binonial N k) (k e) if (k N) (binontal N 1) k) (binontal (- N 1) (- k 1)))>) > (binonia1 8 3) Value: 56 (binonial 12.
+
+(define (mod N M)
+
+(remainder N M))
+
+Output:
+
+(define (mod N M) (remainder N M)) Value: mod 1 J-> (nod s 3) Value: J(nod 98 22) Value: 103.
+
+(define (binaryToDecimal b)
+
+(if (= b 0)     
+
+0
+
+(+ (remainder b 10) (* 2 (binaryToDecimal (quotient b 10))))))
+
+Output:
+
+(define (binaryToDectal b) Value: binarytodecimal 1 1 (binaryToDecimal 101) Value: 5 -(binaryToDecimal 1011) Value: 11 1 (bin4.
+
+(define (binaryToDecimal b)
+
+(if (= b 0)
+
+0
+
+(+ (remainder b 10) (* 2 (binaryToDecimal (quotient b 10))))))
+
+(define (addBinary binaryList)
+
+(if (null? binaryList)
+
+0
+
+(+ (binaryToDecimal (car binaryList)) (addBinary (cdr binaryList)))))

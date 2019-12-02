@@ -12,6 +12,7 @@ private:
 		string sciName;
 		string type;
 		int num;
+		int symptoms[9];
 		Allergen* next;
 	};
 	Allergen* headPtr;
@@ -19,7 +20,7 @@ public:
 	DataBase() { headPtr = nullptr; }
 	~DataBase();
 
-	void addAl(string, string, string, int);
+	void addAl(string, string, string, int, string);
 	void alphaMe(Allergen*);
 	void delAl(string, string, int);
 	void findComName(string);
@@ -30,7 +31,6 @@ public:
 	bool isSciName(string);
 	bool isType(string);
 	bool isNum(string);
-
 	//string syms();
 
 	string print();

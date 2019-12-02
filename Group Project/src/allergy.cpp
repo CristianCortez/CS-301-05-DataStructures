@@ -11,12 +11,19 @@ DataBase::~DataBase() {
 		}
 	}
 }
-void DataBase::addAl(string comN, string sciN, string ty, int n) {
+void DataBase::addAl(string comN, string sciN, string ty, int n, string syms) {
 	Allergen* newNode = new Allergen;
 	newNode->comName = comN;
 	newNode->sciName = sciN;
 	newNode->type = ty;
 	newNode->num = n;
+	for (int i = 0; i < 9; i++)
+		newNode->symptoms[i] = 0;
+	for (int i = 0; i < 9 && i < syms.size(); i++) {
+		if (syms[i] > 48 && syms[i] < 57) {
+			newNode->symptoms[i] = syms[i] - 48;
+		}
+	}
 	newNode->next = NULL;
 	alphaMe(newNode);
 }
@@ -40,10 +47,15 @@ void DataBase::alphaMe(Allergen* newAl) {
 			}
 
 		} while (tmpHead && tmpHead->sciName[i] <= newAl->sciName[i]);
-		if (previous->sciName.compare(newAl->sciName) == 0) {
+		if (previous->sciName.compare(newAl->sciName) == 0) {			//if the science names ==,
+																		//then sort by NCBI num
 			if (previous->num > newAl->num) {
 				newAl->next = previous->next;
 				previous->next = newAl;
+			}
+			else {
+				cout << "\tThis Allergen has been already added." << endl;
+				return;
 			}
 		}
 		else {
@@ -51,6 +63,7 @@ void DataBase::alphaMe(Allergen* newAl) {
 			previous->next = newAl;
 		}
 	}
+	return;
 }
 void DataBase::delAl(string comN, string sciN, int n) {
 	Allergen* tmp = headPtr, *prev = NULL;	
@@ -78,11 +91,19 @@ void DataBase::findComName(string comN) {
 		while (search && comN != search->comName) {
 			search = search->next;
 		}
-		cout << "\nCommon Name:..................." << search->comName
-			<< "\nScientific Name:..............." << search->sciName
-			<< "\nType:.........................." << search->type
-			<< "\nNumber:........................" << search->num << endl;
+		if (search) {
+			cout << "\nCommon Name:..................." << search->comName
+				<< "\nScientific Name:..............." << search->sciName
+				<< "\nType:.........................." << search->type
+				<< "\nNumber:........................" << search->num << endl;
+		}
+		else {
+			cout << "\t\t NO SUCH ALLERGEN WITH COMMON NAME [" << comN << "]." << endl;
+		}
 	}
+	else
+		cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	return;
 }
 void DataBase::findSciName(string sciN) {
 	Allergen* search = headPtr;
@@ -100,7 +121,9 @@ void DataBase::findSciName(string sciN) {
 			cout << "\t\t NO SUCH ALLERGEN WITH SCI. NAME [" << sciN << "]." << endl;
 		}
 	}
-	cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	else
+		cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	return;
 }
 void DataBase::findType(string ty) {
 	Allergen* search = headPtr;
@@ -112,8 +135,12 @@ void DataBase::findType(string ty) {
 					<< "\nType:.........................." << search->type
 					<< "\nNumber:........................" << search->num << endl;
 			}
+			search = search->next;
 		}
 	}
+	else
+		cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	return;
 }
 void DataBase::findNum(int n) {
 	Allergen* search = headPtr;
@@ -121,11 +148,19 @@ void DataBase::findNum(int n) {
 		while (search && n != search->num) {
 			search = search->next;
 		}
-		cout	<< "\nCommon Name:..................." << search->comName
+		if (search) {
+			cout << "\nCommon Name:..................." << search->comName
 				<< "\nScientific Name:..............." << search->sciName
 				<< "\nType:.........................." << search->type
 				<< "\nNumber:........................" << search->num << endl;
+		}
+		else {
+			cout << "\t\t NO SUCH ALLERGEN WITH NCBI NUMBER [" << n << "]." << endl;
+		}
 	}
+	else
+		cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	return;
 }
 bool DataBase::isCommonName(string str) {
 	int j = -1;
@@ -148,8 +183,6 @@ bool DataBase::isSciName(string str) {
 bool DataBase::isType(string str) {
 	if (str[0] >= 97 && str[0] <= 122)
 		str[0] -= 32;
-	//else
-		//str[0] += 32;
 	if (str == "Food" || str == "Plant" || str == "Animal")
 		return true;
 	else
@@ -164,6 +197,7 @@ bool DataBase::isNum(string str) {
 	}
 	return true;
 }
+
 string DataBase::print() {
 	stringstream prtStr;
 	Allergen* tmp = headPtr;
@@ -171,7 +205,12 @@ string DataBase::print() {
 		prtStr << "\nCommon Name:..................." << tmp->comName
 			<< "\nScientific Name:..............." << tmp->sciName
 			<< "\nType:.........................." << tmp->type
-			<< "\nNumber:........................" << tmp->num << endl;
+			<< "\nNumber:........................" << tmp->num
+			<< "\nSymptoms:.";
+		for (int i = 0; i < 9; i++) {
+			prtStr << itos_symptoms(tmp->symptoms[i]) << ".";
+		}
+		prtStr << endl;
 		tmp = tmp->next;
 	}
 	return prtStr.str();

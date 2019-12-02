@@ -9,15 +9,15 @@ public:
 	char getMenu();
 	char getDelete();
 	char getSearch();
-	//char getSymptoms();
 	void setAdd(DataBase*);
 	void setSearch(DataBase*, char ch);
 	void setDelete(DataBase*, char ch);
-	//void setSymptoms(DataBase*, char ch);
 
 };
-
+void display_symptoms();
+string itos_symptoms(int);
+int stoi_symptoms(string);
 string runDescription(void);
 int getInt(string str);
-//void runMainMenu();
+
 #endif // !INTERFACEMENU_H

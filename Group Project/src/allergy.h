@@ -21,19 +21,17 @@ public:
 
 	void addAl(string, string, string, int);
 	void alphaMe(Allergen*);
-	void delAl(int, string, string, int);
+	void delAl(string, string, int);
 	void findComName(string);
 	void findSciName(string);
 	void findType(string);
-	void findNum(int);
-	void delComName(string);
-	void delSciName(string);
-	void delNum(int);
-
+	void findNum(int);	
 	bool isCommonName(string);
 	bool isSciName(string);
 	bool isType(string);
 	bool isNum(string);
+
+	//string syms();
 
 	string print();
 	int getLength();

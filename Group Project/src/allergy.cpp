@@ -23,7 +23,6 @@ void DataBase::addAl(string comN, string sciN, string ty, int n) {
 void DataBase::alphaMe(Allergen* newAl) {
 	Allergen* tmpHead = nullptr;
 	Allergen* previous = tmpHead;
-	//tmpHead = headPtr;
 	int i = 0;
 	if (headPtr == nullptr || headPtr->sciName[0] > newAl->sciName[0]) {
 		newAl->next = headPtr;
@@ -54,70 +53,64 @@ void DataBase::alphaMe(Allergen* newAl) {
 	}
 }
 void DataBase::delAl(string comN, string sciN, int n) {
-	Allergen* tmp = headPtr, * prev = tmp;
-	bool delHead = false;
-	if (tmp) {
-		while (tmp) {
-
-			if (tmp->comName == comN
-				|| tmp->sciName == sciN
-				|| tmp->num == n) {
-				if (tmp == headPtr) {
-					delHead = true;
-				}
-				prev->next = tmp->next;
-				tmp->next = NULL;
-				delete tmp;
-				tmp = nullptr;
-				if (delHead) {
-					headPtr = nullptr;
-				}
-			}
-			else {
-				prev = tmp;
-				tmp = tmp->next;
-			}
-		}
+	Allergen* tmp = headPtr, *prev = NULL;	
+	if (tmp && tmp->comName == comN
+		|| tmp->sciName == sciN
+		|| tmp->num == n) {
+		headPtr = tmp->next;
+		delete tmp;
+		return;
 	}
-	tmp = prev = NULL;
+	while (tmp && (tmp->comName != comN
+		|| tmp->sciName != sciN
+		|| tmp->num != n)) {
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (!tmp) return;
+	
+	prev->next = tmp->next;
+	delete tmp;
 }
 void DataBase::findComName(string comN) {
 	Allergen* search = headPtr;
 	if (search) {
-		while (search) {
-			if (search->comName == comN) {
-				break;
-			}
+		while (search && comN != search->comName) {
+			search = search->next;
 		}
-		cout << "Common Name: \t\t" << search->comName
-			<< "Scientific Name: \t\t" << search->sciName
-			<< "Type: \t\t" << search->type
-			<< "Number: \t\t" << search->num << endl;
+		cout << "\nCommon Name:..................." << search->comName
+			<< "\nScientific Name:..............." << search->sciName
+			<< "\nType:.........................." << search->type
+			<< "\nNumber:........................" << search->num << endl;
 	}
 }
 void DataBase::findSciName(string sciN) {
 	Allergen* search = headPtr;
 	if (search) {
-		while (search) {
-			if (search->comName == sciN) {
-				break;
-			}
+		while (search && sciN != search->sciName) {
+			search = search->next;
 		}
-		cout << "Common Name: \t\t" << search->comName
-			<< "Scientific Name: \t\t" << search->sciName
-			<< "Type: \t\t" << search->type
-			<< "Number: \t\t" << search->num << endl;
+		if (search) {
+			cout << "\nCommon Name:..................." << search->comName
+				<< "\nScientific Name:..............." << search->sciName
+				<< "\nType:.........................." << search->type
+				<< "\nNumber:........................" << search->num << endl;
+		}
+		else {
+			cout << "\t\t NO SUCH ALLERGEN WITH SCI. NAME [" << sciN << "]." << endl;
+		}
 	}
+	cout << "\t\t THE DATABASE IS EMPTY." << endl;
 }
 void DataBase::findType(string ty) {
 	Allergen* search = headPtr;
 	if (search) {
 		while (search) {
 			if (search->type == ty) {
-				cout << "Common Name: \t\t" << search->comName
-					<< "Scientific Name: \t\t" << search->sciName
-					<< "Type: \t\t" << search->type
-					<< "Number: \t\t" << search->num << endl;
+				cout << "\nCommon Name:..................." << search->comName
+					<< "\nScientific Name:..............." << search->sciName
+					<< "\nType:.........................." << search->type
+					<< "\nNumber:........................" << search->num << endl;
 			}
 		}
 	}
@@ -125,15 +118,13 @@ void DataBase::findType(string ty) {
 void DataBase::findNum(int n) {
 	Allergen* search = headPtr;
 	if (search) {
-		while (search) {
-			if (search->num == n) {
-				break;
-			}
+		while (search && n != search->num) {
+			search = search->next;
 		}
-		cout << "Common Name: \t\t" << search->comName
-			<< "Scientific Name: \t\t" << search->sciName
-			<< "Type: \t\t" << search->type
-			<< "Number: \t\t" << search->num << endl;
+		cout	<< "\nCommon Name:..................." << search->comName
+				<< "\nScientific Name:..............." << search->sciName
+				<< "\nType:.........................." << search->type
+				<< "\nNumber:........................" << search->num << endl;
 	}
 }
 bool DataBase::isCommonName(string str) {
@@ -175,16 +166,13 @@ bool DataBase::isNum(string str) {
 }
 string DataBase::print() {
 	stringstream prtStr;
-	prtStr.str("");
 	Allergen* tmp = headPtr;
-	if (tmp) {
-		while (tmp) {
-			prtStr << "\nCommon Name: \t\t" << tmp->comName
-				<< "\nScientific Name: \t\t" << tmp->sciName
-				<< "\nType: \t\t" << tmp->type
-				<< "\nNumber: \t\t" << tmp->num << endl;
-			tmp = tmp->next;
-		}
+	while (tmp) {
+		prtStr << "\nCommon Name:..................." << tmp->comName
+			<< "\nScientific Name:..............." << tmp->sciName
+			<< "\nType:.........................." << tmp->type
+			<< "\nNumber:........................" << tmp->num << endl;
+		tmp = tmp->next;
 	}
 	return prtStr.str();
 }
@@ -199,54 +187,3 @@ int DataBase::getLength() {
 	}
 	return len;
 }
-
-void DataBase::delComName(string s) {
-	Allergen* temp = headPtr;
-	Allergen* tempPrev = temp;
-	if (temp) {
-		while (temp->comName != "s") {
-			tempPrev = temp;
-			temp = temp->next;
-		}
-		tempPrev->next = temp->next;
-		delete temp;
-	}
-}
-void DataBase::delSciName(string s) {
-	Allergen* temp = headPtr;
-	Allergen* tempPrev = temp;
-	if (temp) {
-		while (temp->sciName != "s") {
-			tempPrev = temp;
-			temp = temp->next;
-		}
-		tempPrev->next = temp->next;
-		delete temp;
-	}
-}
-
-void DataBase::delNum(int n) {
-	Allergen* temp = headPtr;
-	Allergen* tempPrev = nullptr;
-	while (temp->num != n) {
-		tempPrev = temp;
-		temp = temp->next;
-	}
-	tempPrev->next = temp->next;
-	delete temp;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// c b a

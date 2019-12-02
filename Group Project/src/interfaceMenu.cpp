@@ -42,9 +42,8 @@ char Menu::getDelete() {
 		<< "\n\tQ - Exits the menu "
 		<< endl;
 	cin >> choice;
-	cout << "\b" << "";
-
 	choice = putchar(toupper(choice));
+	cout << "\b" << "";
 
 	return choice;
 }
@@ -94,54 +93,50 @@ void Menu::setDelete(DataBase* db, char input) {
 
 	else
 		return;
+	//cout << "\nYour allergen has been deleted." << endl; 
 }
 
-void Menu::setSearch(char input) {
+void Menu::setSearch(DataBase* db, char input) {
 	string comName, sciName, type;
 	int num;
-	DataBase db;
-
 	//searches by common name
 	if (input == 'C') {
 		cout << "Enter the Common Name of the allergen: " << endl;
 		cin >> comName;
-		db.findComName(comName);
+		db->findComName(comName);
 	}
-
 	//searches by scientific name
 	else if (input == 'S') {
 		cout << "Enter the Scientific Name of the allergen: " << endl;
 		cin >> sciName;
-		db.findSciName(sciName);
+		db->findSciName(sciName);
 	}
-
 	//searches by type
-	/*
+	
 	else if (input == 'T') {
 		cout << "Enter the type of the allergen: " << endl;
 		cin >> type;
-		db.findType(type);
+		db->findType(type);
 	}
-	*/
+	
 	//searches by ncbi number
 	else if (input == 'N') {
 		cout << "Enter the NCBI Number of the allergen: " << endl;
 		cin >> num;
-		db.findNum(num);
+		db->findNum(num);
 	}
-
-	else
-		return;
+	else return;
 }
 
 void Menu::setAdd(DataBase* myDataBase) {
 	string comName, sciName, type, num;
 	int n;
 	bool loop = true;
-	
+
 	do {
 		cout << "Enter the common name of the allergen: " << endl;
 		cin >> comName;
+		//getline(cin, comName);
 		if ((myDataBase)->isCommonName(comName)) {
 			loop = false;
 		}
@@ -185,14 +180,26 @@ void Menu::setAdd(DataBase* myDataBase) {
 	((myDataBase)->addAl(comName, sciName, type, n));
 }
 
-/*
-void Menu::getSymptoms(){
-	cout << "Symptoms List: "
-	<< "\n\t..."
-}
-*/
+int getInt(string str) {
+	int num = 0;
+	int tens = 1;
+	for (int i = str.size() - 1; i >= 0; i--) {
 
-/*
+		if (str[i] <= '9' && str[i] >= '0') {
+			num += ((str[i] - 48)* tens);
+			str.erase(i);
+		}
+		tens *= 10;
+	}
+	return num;
+}
+
+/*void Menu::getSymptoms(){
+	cout << "Symptoms List: "
+		<< "\n\t...";
+}
+
+
 void Menu::setSymptoms(int input){
 	if (input < 6){
 		cout << "You have a mild case of allergic reaction. " << endl;
@@ -200,5 +207,4 @@ void Menu::setSymptoms(int input){
 	else {
 		cout << " You have a severve case of allergic reaction. Please get medical help ASAP. " << endl;
 	}
-}
-*/
+}*/

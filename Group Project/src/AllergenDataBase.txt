@@ -8,7 +8,17 @@ Description: How to use this program:
 	:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::
 
 
-Common Name: 		Potato
-Scientific Name: 	Potato
-Type: 				Plant
-Number: 			1231
+Common Name:...................dog
+Scientific Name:...............canine
+Type:..........................animal
+Number:........................1266
+
+Common Name:...................cat
+Scientific Name:...............feline
+Type:..........................animal
+Number:........................1265
+
+Common Name:...................eggs
+Scientific Name:...............ovul
+Type:..........................animal
+Number:........................1245

@@ -1,3 +1,11 @@
+/* Author(s): Cristian Cortez if2482
+			Paulo Chu za8684
+			Kevin Nguyen ta8783
+ * Class: CS 301 - 05 (3675) Data Structures and Algorithms
+ * Assignment: Group Project Phase 3
+ * Date (Submitted): 12/02/2019
+*/
+
 #ifndef ALLERGY_H
 #define ALLERGY_H
 #include "includes.h"
@@ -26,17 +34,14 @@ public:
 	void findComName(string);
 	void findSciName(string);
 	void findType(string);
-	void findNum(int);	
+	void findNum(int);
+	void findSyms(int);
 	bool isCommonName(string);
 	bool isSciName(string);
 	bool isType(string);
 	bool isNum(string);
-	//string syms();
-
 	string print();
 	int getLength();
-
-
 };
 
 #endif // !ALLERGY_H

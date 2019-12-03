@@ -1,3 +1,11 @@
+/* Author(s): Cristian Cortez if2482
+			Paulo Chu za8684
+			Kevin Nguyen ta8783
+ * Class: CS 301 - 05 (3675) Data Structures and Algorithms
+ * Assignment: Group Project Phase 3
+ * Date (Submitted): 12/02/2019
+*/
+
 #include "includes.h"
 #include <string>
 #include <iostream>
@@ -16,7 +24,7 @@ int main() {
 	size_t found;							// size_t type obj for str.find() regular expression
 	bool add_cmd = false;					// bool for read from file to see if 'add' cmd was found
 
-	write_file.open("AllergenDataBase.txt");
+	write_file.open("AllergenDataBase.out");
 	write_file << "ALLERCO: Organizing The World's Allergies\n" << endl
 		<< runDescription() << endl;
 	command_in_file.open("AllyCo_Build.in");
@@ -77,16 +85,12 @@ int main() {
 				cout << "\b" << "";
 			} while (choice != 'N');
 			break;
-		/*case 'H':
-			int m;
-			option = opt.getSymptoms();
-			break;*/
 		case 'Q': // option to quit the menu AND streams all allergens to the file.
 			break;
 		default:
 			cout << ":: INVALID CHOICE ::" << endl;
 		}
-		cout << "Do you want to look at the menu again? (Y/N) " << endl;
+		cout << "Do you want to look at the MAIN MENU again? (Y/N) " << endl;
 		cin >> choice;
 		choice = putchar(toupper(choice));
 		cout << "\b" << "";
@@ -96,7 +100,7 @@ int main() {
 	write_file.close();
 	ofstream command_out_file;
 	ifstream read_file;
-	read_file.open("AllergenDataBase.txt");
+	read_file.open("AllergenDataBase.out");
 	command_out_file.open("AllyCo_Build.in", ofstream::trunc);
 
 	while (getline(read_file, file_contents)) {

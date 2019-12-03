@@ -1,3 +1,11 @@
+/* Author(s): Cristian Cortez if2482
+			Paulo Chu za8684
+			Kevin Nguyen ta8783
+ * Class: CS 301 - 05 (3675) Data Structures and Algorithms
+ * Assignment: Group Project Phase 3
+ * Date (Submitted): 12/02/2019
+*/
+
 #include "includes.h"
 
 DataBase::~DataBase() {
@@ -20,7 +28,7 @@ void DataBase::addAl(string comN, string sciN, string ty, int n, string syms) {
 	for (int i = 0; i < 9; i++)
 		newNode->symptoms[i] = 0;
 	for (int i = 0; i < 9 && i < syms.size(); i++) {
-		if (syms[i] > 48 && syms[i] < 57) {
+		if (syms[i] > 48 && syms[i] <= 57) {
 			newNode->symptoms[i] = syms[i] - 48;
 		}
 	}
@@ -75,8 +83,8 @@ void DataBase::delAl(string comN, string sciN, int n) {
 		return;
 	}
 	while (tmp && (tmp->comName != comN
-		|| tmp->sciName != sciN
-		|| tmp->num != n)) {
+		&& tmp->sciName != sciN
+		&& tmp->num != n)) {
 		prev = tmp;
 		tmp = tmp->next;
 	}
@@ -95,7 +103,12 @@ void DataBase::findComName(string comN) {
 			cout << "\nCommon Name:..................." << search->comName
 				<< "\nScientific Name:..............." << search->sciName
 				<< "\nType:.........................." << search->type
-				<< "\nNumber:........................" << search->num << endl;
+				<< "\nNumber:........................" << search->num 
+				<< "\nSymptoms:.";
+			for (int i = 0; i < 9; i++) {
+				cout << itos_symptoms(search->symptoms[i]) << ".";
+			}
+			cout << endl;
 		}
 		else {
 			cout << "\t\t NO SUCH ALLERGEN WITH COMMON NAME [" << comN << "]." << endl;
@@ -115,7 +128,12 @@ void DataBase::findSciName(string sciN) {
 			cout << "\nCommon Name:..................." << search->comName
 				<< "\nScientific Name:..............." << search->sciName
 				<< "\nType:.........................." << search->type
-				<< "\nNumber:........................" << search->num << endl;
+				<< "\nNumber:........................" << search->num 
+				<< "\nSymptoms:.";
+			for (int i = 0; i < 9; i++) {
+				cout << itos_symptoms(search->symptoms[i]) << ".";
+			}
+			cout << endl;
 		}
 		else {
 			cout << "\t\t NO SUCH ALLERGEN WITH SCI. NAME [" << sciN << "]." << endl;
@@ -133,7 +151,12 @@ void DataBase::findType(string ty) {
 				cout << "\nCommon Name:..................." << search->comName
 					<< "\nScientific Name:..............." << search->sciName
 					<< "\nType:.........................." << search->type
-					<< "\nNumber:........................" << search->num << endl;
+					<< "\nNumber:........................" << search->num 
+					<< "\nSymptoms:.";
+				for (int i = 0; i < 9; i++) {
+					cout << itos_symptoms(search->symptoms[i]) << ".";
+				}
+				cout << endl;
 			}
 			search = search->next;
 		}
@@ -152,11 +175,39 @@ void DataBase::findNum(int n) {
 			cout << "\nCommon Name:..................." << search->comName
 				<< "\nScientific Name:..............." << search->sciName
 				<< "\nType:.........................." << search->type
-				<< "\nNumber:........................" << search->num << endl;
+				<< "\nNumber:........................" << search->num
+				<< "\nSymptoms:.";
+			for (int i = 0; i < 9; i++) {
+				cout << itos_symptoms(search->symptoms[i]) << ".";
+			}
+			cout << endl;
 		}
 		else {
 			cout << "\t\t NO SUCH ALLERGEN WITH NCBI NUMBER [" << n << "]." << endl;
 		}
+	}
+	else
+		cout << "\t\t THE DATABASE IS EMPTY." << endl;
+	return;
+}
+void DataBase::findSyms(int sym) {
+	Allergen* search = headPtr;
+	bool found = true;
+	if (search) {
+		while (search) {
+			for (int i = 0; i < 9; i++) {
+				if (search->symptoms[i] == sym) {
+					cout << "\nCommon Name:..................." << search->comName
+						<< "\nScientific Name:..............." << search->sciName
+						<< "\nType:.........................." << search->type
+						<< "\nNumber:........................" << search->num << endl;
+					found = false;
+				}
+			}
+			search = search->next;
+		}
+		if (!found)
+			cout << "\t\t NO SUCH ALLERGEN WITH SYMPTOM NUMBER [" << sym << "]." << endl;
 	}
 	else
 		cout << "\t\t THE DATABASE IS EMPTY." << endl;
@@ -183,7 +234,7 @@ bool DataBase::isSciName(string str) {
 bool DataBase::isType(string str) {
 	if (str[0] >= 97 && str[0] <= 122)
 		str[0] -= 32;
-	if (str == "Food" || str == "Plant" || str == "Animal")
+	if (str == "Food" || str == "Plant" || str == "Animal" || str == "Insect")
 		return true;
 	else
 		return false;

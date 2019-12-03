@@ -1,38 +1,31 @@
+/* Author(s): Cristian Cortez if2482
+			Paulo Chu za8684
+			Kevin Nguyen ta8783
+ * Class: CS 301 - 05 (3675) Data Structures and Algorithms
+ * Assignment: Group Project Phase 3
+ * Date (Submitted): 12/02/2019
+*/
+
 #include "includes.h"
 #include "allergy.h"
 #include "interfaceMenu.h"
-string runDescription(void) {
-	stringstream prtStr;
-	prtStr << "Description: How to use this program: "
-		<< "\n\tSearch the allergen database. "
-		<< "\n\tDelete an allergen from the database. "
-		<< "\n\tAdd an allergen to the database."
-		<< "\n\t(Alphabatized by Science Name)"
-		// << "\n\tShow symptoms from the allergic reaction. "
-		// << "\n\tGo back feature to the menu. "
-		<< "\n\tExits the menu. "
-		<< "\n\t:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::" << endl;
-	return prtStr.str();
-}
 
 char Menu::getMenu() {
 	char choice;
 
-	cout << "*AllerCo Main Menu:                        *"
-		 << "\n\t*A - Add allergen to database          *"
-		 << "\n\t*D - Delete allergen from the database *"
-		 << "\n\t*S - Search allergen in the database   *"
-		 // "\n\t*H - Show symptoms from the allergic reaction "
-		 << "\n\t*Q - Exits the menu                    *"
-		<< endl;
+	cout << "AllerCo Main Menu: "
+		 << "\n\tA - Add allergen to database  "
+		 << "\n\tD - Delete allergen from the database"
+		 << "\n\tS - Search allergen in the database"
+		 << "\n\tQ - Exits the menu"
+		<< endl << "...";
 	cin >> choice;
 
-	choice = putchar(toupper(choice));
-	/*cout << "\b" << "";*/
+	if (choice >= 97 && choice <= 122)
+		choice -= 32;
 
 	return choice;
 }
-
 char Menu::getDelete() {
 	char choice;
 
@@ -41,106 +34,44 @@ char Menu::getDelete() {
 		<< "\n\tS - Deletes by science name "
 		<< "\n\tN - Deletes by NCBI number "
 		<< "\n\tQ - Exits the menu "
-		<< endl;
+		<< endl << "...";
 	cin >> choice;
-	choice = putchar(toupper(choice));
-	//cout << "\b" << "";
+	if (choice >= 97 && choice <= 122)
+		choice -= 32;
 
 	return choice;
 }
-
 char Menu::getSearch() {
 	char choice;
 
 	cout << "AllerCo Search Menu: "
 		<< "\n\tC - Search by common name "
 		<< "\n\tS - Search by science name "
-		// << "\n\tT - Search by type "
+		<< "\n\tT - Search by type "
 		<< "\n\tN - Search by NCBI number "
+		<< "\n\tM - Search by Symptom"
 		<< "\n\tQ - Exits the menu "
-		<< endl;
+		<< endl << "...";
 	cin >> choice;
 
-	choice = putchar(toupper(choice));
-	//cout << "\b" << "";
+	if (choice >= 97 && choice <= 122)
+		choice -= 32;
 
 	return choice;
-}
-
-void Menu::setDelete(DataBase* db, char input) {
-	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
-	string comName, sciName;
-	int num;
-	//deletes by common name
-	if (input == 'C') {
-		cout << "Enter the common name of the allergen you wish to delete:.......... ";
-		cin >> comName;
-		(db)->delAl(comName, "", 0);
-	}
-	// deletes by scientific name
-	else if (input == 'S') {
-		cout << "Enter the scientific name of the allergen you wish to delete:...... ";
-		cin >> sciName;
-		db->delAl("", sciName, 0);
-	}
-	//deletes by ncbi number
-	else if (input == 'N') {
-		cout << "Enter the NCBI number of the allergen you wish to delete:...........";
-		cin >> num;
-		db->delAl("", "", num);
-	}
-	else {
-		cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
-		return;
-	}
-}
-
-void Menu::setSearch(DataBase* db, char input) {
-	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
-	string comName, sciName, type;
-	int num;
-	//searches by common name
-	if (input == 'C') {
-		cout << "Enter the Common Name of the allergen:.......... ";
-		cin >> comName;
-		db->findComName(comName);
-	}
-	//searches by scientific name
-	else if (input == 'S') {
-		cout << "Enter the Scientific Name of the allergen:...... ";
-		cin >> sciName;
-		db->findSciName(sciName);
-	}
-	//searches by type
-	
-	else if (input == 'T') {
-		cout << "Enter the Type of the allergen:................. ";
-		cin >> type;
-		db->findType(type);
-	}
-	
-	//searches by ncbi number
-	else if (input == 'N') {
-		cout << "Enter the NCBI Number of the allergen:.......... ";
-		cin >> num;
-		db->findNum(num);
-	}
-	else {
-		cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
-		return;
-	}
 }
 
 void Menu::setAdd(DataBase* myDataBase) {
 	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
 	string comName, sciName, type, num, syms;
-	int n;
+	int n, m;
 	bool loop = true;
 
 	do {
 		cout << "Enter the Common Name of the allergen:.......... ";
-		cin >> comName;
-		//getline(cin, comName);
+		cin.ignore();
+		getline(cin, comName);
+		if (comName[0] >= 97 && comName[0] <= 122)
+			comName[0] -= 32;
 		if ((myDataBase)->isCommonName(comName)) {
 			loop = false;
 		}
@@ -150,9 +81,12 @@ void Menu::setAdd(DataBase* myDataBase) {
 	} while (loop);
 
 	loop = true;
+	cin.ignore();
 	do {
 		cout << "Enter the Scientific Name of the allergen:...... ";
-		cin >> sciName;
+		getline(cin, sciName);
+		if (sciName[0] >= 97 && sciName[0] <= 122)
+			sciName[0] -= 32;
 		if ((myDataBase)->isSciName(sciName))
 			loop = false;
 		else
@@ -160,9 +94,12 @@ void Menu::setAdd(DataBase* myDataBase) {
 	} while (loop);
 
 	loop = true;
+	cin.ignore();
 	do {
 		cout << "Enter the Type of the allergen:................. ";
-		cin >> type;
+		getline(cin, type);
+		if (type[0] >= 97 && type[0] <= 122)
+			type[0] -= 32;
 		if ((myDataBase)->isType(type))
 			loop = false;
 		else
@@ -170,9 +107,10 @@ void Menu::setAdd(DataBase* myDataBase) {
 	} while (loop);
 
 	loop = true;
+	cin.ignore();
 	do {
 		cout << "Enter the NCBI Number of the allergen:.......... ";
-		cin >> num;
+		getline(cin, num);
 		if ((myDataBase)->isNum(num)) {
 			n = stoi(num);
 			loop = false;
@@ -182,13 +120,14 @@ void Menu::setAdd(DataBase* myDataBase) {
 	} while (loop);
 
 	loop = true;
+	cin.ignore();
 	do {
 		cout << "Enter the single digit numbers for each symptom:..."
 			<< "\n::Press \"0\" to see list of symptoms::\n"
 			<< ".....";
-		cin >> syms;
-		n = getInt(num);
-		if (n == 0)
+		getline(cin, syms);
+		m = getInt(syms);
+		if (m == 0)
 			display_symptoms();
 		else
 			loop = false;
@@ -197,7 +136,119 @@ void Menu::setAdd(DataBase* myDataBase) {
 	((myDataBase)->addAl(comName, sciName, type, n, syms));
 	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
 }
+void Menu::setDelete(DataBase* db, char input) {
+	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
+	string comName, sciName;
+	int num;
+	//deletes by common name
+	if (input == 'C') {
+		cout << "Enter the common name of the allergen you wish to delete:.......... ";
+		cin.ignore();
+		getline(cin, comName);
+		if (comName[0] >= 97 && comName[0] <= 122)
+			comName[0] -= 32;
+		(db)->delAl(comName, "", 0);
+	}
+	// deletes by scientific name
+	else if (input == 'S') {
+		cout << "Enter the scientific name of the allergen you wish to delete:...... ";
+		cin.ignore();
+		getline(cin, sciName);
+		if (sciName[0] >= 97 && sciName[0] <= 122)
+			sciName[0] -= 32;
+		db->delAl("", sciName, 0);
+	}
+	//deletes by ncbi number
+	else if (input == 'N') {
+		cout << "Enter the NCBI number of the allergen you wish to delete:...........";
+		cin.ignore();
+		cin >> num;
+		db->delAl("", "", num);
+	}
+	else {
+		cout << "\n::INVALID ENTRY::" << endl;
+	}
+	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
+	return;
+}
+void Menu::setSearch(DataBase* db, char input) {
+	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
+	string comName, sciName, type, syms;
+	int num;
+	bool loop = true;
+	//searches by common name
+	if (input == 'C') {
+		cout << "Enter the Common Name of the allergen:.......... ";
+		cin.ignore();
+		getline(cin, comName);
+		if (comName[0] >= 97 && comName[0] <= 122)
+			comName[0] -= 32;
+		db->findComName(comName);
+	}
+	//searches by scientific name
+	else if (input == 'S') {
+		cout << "Enter the Scientific Name of the allergen:...... ";
+		cin.ignore();
+		getline(cin, sciName);
+		if (sciName[0] >= 97 && sciName[0] <= 122)
+			sciName[0] -= 32;
+		db->findSciName(sciName);
+	}
+	//searches by type
+	
+	else if (input == 'T') {
+		cout << "Enter the Type of the allergen:................. ";
+		cin.ignore();
+		getline(cin, type);
+		if (type[0] >= 97 && type[0] <= 122)
+			type[0] -= 32;
+		db->findType(type);
+	}
+	
+	//searches by ncbi number
+	else if (input == 'N') {
+		cout << "Enter the NCBI Number of the allergen:.......... ";
+		cin.ignore();
+		cin >> num;
+		db->findNum(num);
+	}
+	//searches by symptom
+	else if (input == 'M') {
+		cin.ignore();
+		do {
+			cout << "Enter the single digit number of the symptom:..."
+				<< "\n::Press \"0\" to see list of symptoms::\n"
+				<< ".....";
+			
+			getline(cin, syms);
+			num = getInt(syms);
+			if (num == 0)
+				display_symptoms();
+			else {
+				db->findSyms(num);
+				loop = false;
+			}
+		} while (loop);
+	}
+	else {
+		cout << "\n::INVALID ENTRY::" << endl;
+	}
+	cout << "'''''''''''''''''''''''''''''''''''''''''''''" << endl;
+	return;
+}
 
+string runDescription(void) {
+	stringstream prtStr;
+	prtStr << "Description: How to use this program: "
+		<< "\n\tSearch the allergen database. "
+		<< "\n\tDelete an allergen from the database. "
+		<< "\n\tAdd an allergen to the database."
+		<< "\n\t(Alphabatized by Science Name)"
+		<< "\n\tShow symptoms from the allergic reaction. "
+		<< "\n\tExits the menu. "
+		<< "\n\t:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::" << endl;
+	return prtStr.str();
+}
 int getInt(string str) {
 	int num = 0;
 	int tens = 1;

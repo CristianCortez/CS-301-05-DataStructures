@@ -1,0 +1,95 @@
+ALLERCO: Organizing The World's Allergies
+
+Description: How to use this program: 
+	Search the allergen database. 
+	Delete an allergen from the database. 
+	Add an allergen to the database.
+	(Alphabatized by Science Name)
+	Show symptoms from the allergic reaction. 
+	Exits the menu. 
+	:: THE FOLLOWING IS A COLLECTION OF ALLERGENS ::
+
+
+Common Name:...................Dog
+Scientific Name:...............Canine
+Type:..........................Animal
+Number:........................1266
+Symptoms:.Sneezing.Itching.Rash.......
+
+Common Name:...................Dust
+Scientific Name:...............Dusphamine
+Type:..........................Animal
+Number:........................565
+Symptoms:.Runny / Stuffy Nose.Coughing.Sneezing.Breathing Problems......
+
+Common Name:...................Cat
+Scientific Name:...............Feline
+Type:..........................Animal
+Number:........................736
+Symptoms:.Rash.Sneezing.Itching.......
+
+Common Name:...................Grass
+Scientific Name:...............Graphamine
+Type:..........................Plant
+Number:........................1010
+Symptoms:.Rash.Breathing Problems.Sneezing.......
+
+Common Name:...................Milk
+Scientific Name:...............Lactose
+Type:..........................Food
+Number:........................95
+Symptoms:.Gastrointestinal Problems.........
+
+Common Name:...................Mold
+Scientific Name:...............Molphamine
+Type:..........................Food
+Number:........................90
+Symptoms:.Gastrointestinal Problems.Rash........
+
+Common Name:...................Nuts
+Scientific Name:...............Nutphamine
+Type:..........................Plant
+Number:........................1001
+Symptoms:.Gastrointestinal Problems.Breathing Problems.Rash.......
+
+Common Name:...................Eggs
+Scientific Name:...............Ovul
+Type:..........................Animal
+Number:........................1245
+Symptoms:.Watery Eyes.Rash........
+
+Common Name:...................Pollen
+Scientific Name:...............Polphamine
+Type:..........................Plant
+Number:........................1000
+Symptoms:.Coughing.Sneezing.Breathing Problems.Swollen Mucous Membranes......
+
+Common Name:...................Potato
+Scientific Name:...............Potphamine
+Type:..........................Plant
+Number:........................978
+Symptoms:.Gastrointestinal Problems.Rash.Swollen Mucous Membranes.......
+
+Common Name:...................Bees
+Scientific Name:...............Stingphamine
+Type:..........................Insect
+Number:........................1207
+Symptoms:.Rash.Itching........
+
+Common Name:...................Soy
+Scientific Name:...............Soyphamine
+Type:..........................Plant
+Number:........................1005
+Symptoms:.Rash.Gastrointestinal Problems.Swollen Mucous Membranes.......
+
+Common Name:...................Shrimp
+Scientific Name:...............Shellfish
+Type:..........................Animal
+Number:........................1250
+Symptoms:.Gastrointestinal Problems.Breathing Problems.Rash.......
+
+Common Name:...................Wheat
+Scientific Name:...............Wheatphamine
+Type:..........................Plant
+Number:........................9
+Symptoms:.Gastrointestinal Problems.........
